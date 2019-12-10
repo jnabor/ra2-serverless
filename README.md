@@ -4,9 +4,7 @@
 
 SaaS Starter Kit with React AWS Amplify
 
-see demo @ https://dev.d2r0i875og3a0l.amplifyapp.com
-
----
+## see live demo @ https://dev.d2jrlj03puhlnd.amplifyapp.com/
 
 ## Features
 
