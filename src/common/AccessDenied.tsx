@@ -25,7 +25,7 @@ export interface AccessDeniedProps {}
 const AccessDenied: React.SFC<AccessDeniedProps> = () => {
   const classes = useStyles(useTheme())
   return (
-    <Layout title='Access Denied'>
+    <Layout title='RA2 Access Denied'>
       <CssBaseline />
       <div className={classes.paper}>
         <h1>Access Denied!</h1>

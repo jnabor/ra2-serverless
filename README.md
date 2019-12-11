@@ -6,6 +6,8 @@ SaaS Starter Kit with React AWS Amplify
 
 ## see live demo @ https://dev.d2jrlj03puhlnd.amplifyapp.com/
 
+---
+
 ## Features
 
 ### auth module
@@ -22,11 +24,28 @@ SaaS Starter Kit with React AWS Amplify
 - [ ] attributes
 - [ ] avatar
 
-### push notifications
+---
+
+## Samples Applications
+
+### real time canvas
+
+- [ ] Doodle with others in realtime.
+- [ ] Real-time collaboration
+
+### chat application
+
+- [ ] Real-time offline ready messaging
+- [ ] Push notifications
+
+### notes app
+
+- [ ] Take down notes and share to others
+- [ ] To do list
 
 ### qr code generator
 
-### database api
+---
 
 ### themes
 
@@ -40,5 +59,5 @@ SaaS Starter Kit with React AWS Amplify
 
 - TypeScript
 - React
-- AWS Amplify
 - Material-UI
+- AWS Amplify

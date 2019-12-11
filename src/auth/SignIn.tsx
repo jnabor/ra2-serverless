@@ -56,7 +56,7 @@ const AuthSignIn: React.SFC<AuthSignInProps> = () => {
 
   const classes = useStyles(useTheme())
   return (
-    <Layout title='Molotov Auth'>
+    <Layout title='RA2 Sign In'>
       <AuthLayout title='Sign In'>
         <Snackbar variant='error' message={error} />
         <form

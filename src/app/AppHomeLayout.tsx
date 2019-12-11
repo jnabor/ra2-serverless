@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Themer from './AppThemer'
 import Footer from './AppFooter'
@@ -27,6 +27,10 @@ export interface HomeLayoutProps {
 }
 
 const HomeLayout: React.SFC<HomeLayoutProps> = ({ title, children }) => {
+  useEffect(() => {
+    document.title = title
+  })
+
   const classes = useStyles()
   return (
     <Themer>

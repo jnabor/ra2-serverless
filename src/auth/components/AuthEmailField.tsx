@@ -22,7 +22,7 @@ const AuthEmailField: React.SFC<AuthEmailFieldProps> = ({ setEmail }) => {
       )
       setEmail(isValid ? email : '')
       delay = null
-    }, 300)
+    }, 200)
   }
 
   return (

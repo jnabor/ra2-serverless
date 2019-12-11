@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Themer from './AppThemer'
 import Footer from './AppFooter'
@@ -34,6 +34,11 @@ export interface LayoutProps {
 
 const Layout: React.SFC<LayoutProps> = ({ title, children }) => {
   const classes = useStyles(useTheme())
+
+  useEffect(() => {
+    document.title = title
+  }, [title])
+
   return (
     <Themer>
       <div className={classes.root}>

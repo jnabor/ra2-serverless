@@ -37,7 +37,7 @@ const AuthReset: React.SFC<AuthResetProps> = () => {
   const classes = useStyles(useTheme())
 
   return (
-    <Layout title='Molotov Auth'>
+    <Layout title='RA2 Reset Password'>
       <AuthLayout title='Reset'>
         <form
           className={classes.form}

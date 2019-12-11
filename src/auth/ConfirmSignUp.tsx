@@ -66,7 +66,7 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
 
   const classes = useStyles(useTheme())
   return (
-    <Layout title='Molotov Auth'>
+    <Layout title='RA2 Confirm Sign Up'>
       <AuthLayout title='Confirm'>
         <Snackbar variant='error' message={error} />
         <form

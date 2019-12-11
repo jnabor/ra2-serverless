@@ -60,7 +60,7 @@ const AuthPasswordField: React.SFC<AuthPasswordFieldProps> = ({
       setHint(password.length > 0 ? 'Invalid password.' : 'Enter password.')
       setPassword(isValid ? password : '')
       delay = null
-    }, 300)
+    }, 200)
   }
 
   const hintString = valid ? null : (

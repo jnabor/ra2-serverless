@@ -111,7 +111,7 @@ const Home: React.SFC<HomeProps> = () => {
   return (
     <Grid container component='main' className={classes.root}>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <Layout title='Molotov Home'>
+        <Layout title='RA2 Home'>
           <CssBaseline />
           <Container maxWidth='xs'>
             <div className={classes.paper}>
