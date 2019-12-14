@@ -2,13 +2,15 @@
 
 ## ra2-serverless
 
-SaaS Starter Kit with React AWS Amplify
+### SaaS Starter Kit with React AWS Amplify
 
-## see live demo @ https://dev.d2jrlj03puhlnd.amplifyapp.com/
+#### see live demo @ https://dev.d2jrlj03puhlnd.amplifyapp.com/
 
 test account: <br />
 email: 'dev@sonabstudios.com' <br />
 password: 'S0nabStudi0s#dev' <br />
+
+![Preview](ci_cd_pipeline.jpg)
 
 ---
 
@@ -62,8 +64,10 @@ password: 'S0nabStudi0s#dev' <br />
 ## Tech Stack
 
 - TypeScript
-- React
+- React + Hooks
+- React Router
 - Material-UI
 - AWS Amplify
-- unit test: jest + enzyme
-- e2e test: mocha + cypress
+- Unit Tests with Jest + Enzyme
+- Functional Tests with Cypress
+- CI/CD with Amplify Console
