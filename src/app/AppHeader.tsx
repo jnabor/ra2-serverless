@@ -31,11 +31,24 @@ const Header: React.SFC<HeaderProps> = () => {
   const authContext = useContext(AuthContext)
   const history = useHistory()
 
+  const signOutHandler = () => {
+    authContext
+      .signOut()
+      .then(data => {
+        console.log(data)
+        console.log('---sign out')
+        history.push('/')
+      })
+      .catch(err => {
+        console.log('error sign out')
+      })
+  }
+
   let authLink = authContext.isAuth ? (
     <Button
       color='primary'
       onClick={() => {
-        console.log('sign out')
+        signOutHandler()
       }}>
       Sign Out
     </Button>

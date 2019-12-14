@@ -1,12 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link, Grid, TextField } from '@material-ui/core'
-import {
-  useTheme,
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles'
 
 import Layout from '../app/AppLayout'
 import Snackbar from '../common/Snackbar'
@@ -14,15 +8,7 @@ import Snackbar from '../common/Snackbar'
 import { AuthContext } from './auth-context'
 import AuthButton from './components/AuthButton'
 import AuthLayout from './components/AuthLayout'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1)
-    }
-  })
-)
+import { useStyles } from './components/styles'
 
 export interface AuthConfirmSignUpProps {}
 
@@ -64,7 +50,7 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
     }, 300)
   }
 
-  const classes = useStyles(useTheme())
+  const classes = useStyles()
   return (
     <Layout title='RA2 Confirm Sign Up'>
       <AuthLayout title='Confirm'>

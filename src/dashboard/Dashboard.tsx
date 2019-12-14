@@ -118,12 +118,20 @@ const Dashboard: React.SFC<DashboardProps> = () => {
   const [open, setOpen] = React.useState(true)
   const history = useHistory()
 
+  const signOutHandler = () => {
+    authContext
+      .signOut()
+      .then(data => {
+        console.log(data)
+        history.push('/')
+      })
+      .catch(err => {
+        console.log('error sign out')
+      })
+  }
+
   let authLink = authContext.isAuth ? (
-    <Button
-      color='inherit'
-      onClick={() => {
-        console.log('sign out')
-      }}>
+    <Button color='inherit' onClick={() => signOutHandler()}>
       Sign Out
     </Button>
   ) : null

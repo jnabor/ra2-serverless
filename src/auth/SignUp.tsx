@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link, Grid } from '@material-ui/core'
-import {
-  useTheme,
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles'
-
 import Layout from '../app/AppLayout'
 import Snackbar from '../common/Snackbar'
 
@@ -16,15 +9,7 @@ import AuthLayout from './components/AuthLayout'
 import AuthEmailField from './components/AuthEmailField'
 import AuthPasswordField from './components/AuthPasswordField'
 import AuthButton from './components/AuthButton'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1)
-    }
-  })
-)
+import { useStyles } from './components/styles'
 
 export interface AuthSignUpProps {}
 
@@ -54,8 +39,7 @@ const AuthSignUp: React.SFC<AuthSignUpProps> = () => {
       })
   }
 
-  const classes = useStyles(useTheme())
-
+  const classes = useStyles()
   return (
     <Layout title='RA2 Sign Up'>
       <AuthLayout title='Sign Up'>
@@ -68,13 +52,20 @@ const AuthSignUp: React.SFC<AuthSignUpProps> = () => {
           <AuthPasswordField setPassword={password => setPassword(password)} />
           <AuthButton disabled={disable}>Sign Up</AuthButton>
           <Grid container>
-            <Grid item xs></Grid>
-            <Grid item>
+            <Grid item xs>
               <Link
                 href='#'
                 onClick={() => history.push('/auth')}
                 variant='body2'>
-                {'Already have an account? Sign In'}
+                {'Already have account? Sign In'}
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link
+                href='#'
+                onClick={() => history.push('/auth/confirm')}
+                variant='body2'>
+                {'Confirm Sign Up'}
               </Link>
             </Grid>
           </Grid>

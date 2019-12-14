@@ -1,13 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link, Grid } from '@material-ui/core'
-import {
-  useTheme,
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles'
-
 import Layout from '../app/AppLayout'
 import Snackbar from '../common/Snackbar'
 
@@ -16,15 +9,7 @@ import AuthButton from './components/AuthButton'
 import AuthEmailField from './components/AuthEmailField'
 import AuthPasswordField from './components/AuthPasswordField'
 import AuthLayout from './components/AuthLayout'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1)
-    }
-  })
-)
+import { useStyles } from './components/styles'
 
 export interface AuthSignInProps {}
 
@@ -46,7 +31,7 @@ const AuthSignIn: React.SFC<AuthSignInProps> = () => {
       .signIn(email, password)
       .then(data => {
         console.log(data)
-        //history.push('/')
+        history.push('/')
       })
       .catch(err => {
         console.error('error:', err)
@@ -54,7 +39,8 @@ const AuthSignIn: React.SFC<AuthSignInProps> = () => {
       })
   }
 
-  const classes = useStyles(useTheme())
+  const classes = useStyles()
+
   return (
     <Layout title='RA2 Sign In'>
       <AuthLayout title='Sign In'>

@@ -1,26 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link, Grid } from '@material-ui/core'
-import {
-  useTheme,
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles'
 
 import Layout from '../app/AppLayout'
 import AuthButton from './components/AuthButton'
 import AuthEmailField from './components/AuthEmailField'
 import AuthLayout from './components/AuthLayout'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1)
-    }
-  })
-)
+import { useStyles } from './components/styles'
 
 export interface AuthResetProps {}
 
@@ -34,7 +20,7 @@ const AuthReset: React.SFC<AuthResetProps> = () => {
     console.log(email)
   }
 
-  const classes = useStyles(useTheme())
+  const classes = useStyles()
 
   return (
     <Layout title='RA2 Reset Password'>
