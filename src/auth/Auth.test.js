@@ -1,5 +1,5 @@
 import React from 'react'
-import { configure, shallow } from 'enzyme'
+import { configure, shallow, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 import SignIn from './SignIn'
@@ -38,22 +38,22 @@ describe('<AuthLayout />', () => {
   })
 })
 
-describe('<AuthButton />', () => {
-  const container = shallow(<AuthButton />)
+describe('<AuthButton></AuthButton>', () => {
+  const container = mount(<AuthButton>Test</AuthButton>)
   it('should match the snapshot', () => {
     expect(container.html()).toMatchSnapshot()
   })
 })
 
 describe('<AuthEmailField />', () => {
-  const container = shallow(<AuthEmailField />)
+  const container = mount(<AuthEmailField />)
   it('should match the snapshot', () => {
     expect(container.html()).toMatchSnapshot()
   })
 })
 
 describe('<AuthPasswordField />', () => {
-  const container = shallow(<AuthPasswordField />)
+  const container = mount(<AuthPasswordField />)
   it('should match the snapshot', () => {
     expect(container.html()).toMatchSnapshot()
   })
