@@ -6,6 +6,10 @@ SaaS Starter Kit with React AWS Amplify
 
 ## see live demo @ https://dev.d2jrlj03puhlnd.amplifyapp.com/
 
+test account: <br />
+email: 'dev@sonabstudios.com' <br />
+password: 'S0nabStudi0s#dev' <br />
+
 ---
 
 ## Features
@@ -17,11 +21,11 @@ SaaS Starter Kit with React AWS Amplify
 - [x] signin with email
   - [x] signup with email
   - [ ] reset password
-- [ ] signout
+- [x] signout
 
 ### user module
 
-- [ ] attributes
+- [ ] attributes: name
 - [ ] avatar
 
 ---
@@ -61,3 +65,5 @@ SaaS Starter Kit with React AWS Amplify
 - React
 - Material-UI
 - AWS Amplify
+- unit test: jest + enzyme
+- e2e test: mocha + cypress
