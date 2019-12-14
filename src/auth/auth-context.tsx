@@ -9,6 +9,7 @@ export interface AuthContextProps {
   user: any
   signUp(username: string, password: string): Promise<any>
   confirmSignUp(code: string): Promise<any>
+  resendSignUp(): Promise<any>
   signIn(username: string, password: string): Promise<any>
   signOut(): Promise<any>
 }
@@ -19,6 +20,7 @@ export const AuthContext = React.createContext<AuthContextProps>({
   user: {},
   signUp: () => new Promise(reject => reject(0)),
   confirmSignUp: () => new Promise(reject => reject(0)),
+  resendSignUp: () => new Promise(reject => reject(0)),
   signIn: () => new Promise(reject => reject(0)),
   signOut: () => new Promise(reject => reject(0))
 })
@@ -48,6 +50,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         })
         console.log(user)
         setUser(user)
+        setEmail(email)
         resolve(user)
       } catch (err) {
         console.log(err)
@@ -57,6 +60,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           case 'PasswordResetRequiredException':
           case 'NotAuthorizedException':
           case 'UserNotFoundException':
+          case 'UsernameExistsException':
             message = err.message
             break
           default:
@@ -72,6 +76,18 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     return new Promise(async (resolve, reject) => {
       try {
         const { user } = await Auth.confirmSignUp(email, code)
+        resolve(user)
+      } catch (err) {
+        const message = err.message || 'An internal error occurred.'
+        reject(message)
+      }
+    })
+  }
+
+  const confirmSignUpEmail = (userEmail: string, code: string) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { user } = await Auth.confirmSignUp(userEmail, code)
         resolve(user)
       } catch (err) {
         const message = err.message || 'An internal error occurred.'
@@ -97,13 +113,25 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     })
   }
 
+  const resendSignUp = () => {
+    return new Promise((resolve, reject) => {
+      Auth.resendSignUp(email)
+        .then(data => {
+          resolve(data)
+        })
+        .catch(err => {
+          const message = err.message || 'An internal error occurred.'
+          reject(message)
+        })
+    })
+  }
+
   const signOut = () => {
     setEmail(email)
     return new Promise((resolve, reject) => {
       Auth.signOut()
         .then(data => {
           setIsAuth(false)
-          console.log('auth')
           resolve(data)
         })
         .catch(err => {
@@ -121,6 +149,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         signUp: signUp,
         user: user,
         confirmSignUp: confirmSignUp,
+        resendSignUp: resendSignUp,
         signIn: signIn,
         signOut: signOut
       }}>

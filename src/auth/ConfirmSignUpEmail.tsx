@@ -1,37 +1,43 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Link, Grid } from '@material-ui/core'
+import { Link, Grid, TextField } from '@material-ui/core'
+
 import Layout from '../app/AppLayout'
 import Snackbar from '../common/Snackbar'
 
 import { AuthContext } from './auth-context'
-import AuthButton from './components/AuthButton'
+import AuthCodeField from './components/AuthCodeField'
 import AuthEmailField from './components/AuthEmailField'
-import AuthPasswordField from './components/AuthPasswordField'
+import AuthButton from './components/AuthButton'
 import AuthLayout from './components/AuthLayout'
 import { useStyles } from './components/styles'
 
-export interface AuthSignInProps {}
+export interface AuthConfirmSignUpProps {}
 
-const AuthSignIn: React.SFC<AuthSignInProps> = () => {
+const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
   const authContext = useContext(AuthContext)
   const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [code, setCode] = useState<string>('')
   const [disable, setDisable] = useState<boolean>(true)
   const [error, setError] = useState<string>('')
+  const [message, setMessage] = useState<string>('')
   const history = useHistory()
 
   useEffect(() => {
-    setDisable(!(email && password))
-  }, [email, password])
+    setDisable(!(email && code))
+  }, [email, code])
 
   const submitHandler = (e: any) => {
     e.preventDefault()
+    console.log('resend confirmation code sign up', code)
+  }
+
+  const resendHandler = () => {
+    setMessage('')
     authContext
-      .signIn(email, password)
+      .resendSignUp()
       .then(data => {
-        console.log(data)
-        history.push('/')
+        setMessage('Code resent to your email.')
       })
       .catch(err => {
         console.error('error:', err)
@@ -40,33 +46,22 @@ const AuthSignIn: React.SFC<AuthSignInProps> = () => {
   }
 
   const classes = useStyles()
-
   return (
-    <Layout title='RA2 Sign In'>
-      <AuthLayout title='Sign In'>
+    <Layout title='RA2 Confirm Sign Up'>
+      <AuthLayout title='Confirm'>
         <Snackbar variant='error' message={error} />
         <form
           className={classes.form}
           onSubmit={e => submitHandler(e)}
           noValidate>
           <AuthEmailField setEmail={email => setEmail(email)} />
-          <AuthPasswordField setPassword={password => setPassword(password)} />
-          <AuthButton disabled={disable}>Sign In</AuthButton>
+          <AuthCodeField setCode={code => setCode(code)} />
+          <AuthButton disabled={disable}>Confirm</AuthButton>
           <Grid container>
-            <Grid item xs className={classes.links}>
-              <Link
-                href='#'
-                onClick={() => history.push('/auth/resetpassword')}
-                variant='body2'>
-                Forgot password?
-              </Link>
-            </Grid>
+            <Grid item xs className={classes.links}></Grid>
             <Grid item className={classes.links}>
-              <Link
-                href='#'
-                onClick={() => history.push('/auth/signup')}
-                variant='body2'>
-                Sign Up
+              <Link href='#' onClick={() => resendHandler()} variant='body2'>
+                Resend code
               </Link>
             </Grid>
           </Grid>
@@ -76,4 +71,4 @@ const AuthSignIn: React.SFC<AuthSignInProps> = () => {
   )
 }
 
-export default AuthSignIn
+export default AuthConfirmSignUp

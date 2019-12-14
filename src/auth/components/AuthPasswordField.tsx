@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import { useStyles } from './styles'
 import {
   FormControl,
   InputLabel,
@@ -11,21 +12,6 @@ import {
 
 import { Visibility, VisibilityOff } from '@material-ui/icons'
 
-import {
-  useTheme,
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    textfield: {
-      margin: theme.spacing(2, 0, 0)
-    }
-  })
-)
-
 export interface AuthPasswordFieldProps {
   setPassword: (password: string) => void
 }
@@ -33,8 +19,6 @@ export interface AuthPasswordFieldProps {
 const AuthPasswordField: React.SFC<AuthPasswordFieldProps> = ({
   setPassword
 }) => {
-  const classes = useStyles(useTheme())
-
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [valid, setValid] = useState<boolean>(true)
   const [hint, setHint] = useState<string>('')
@@ -63,12 +47,12 @@ const AuthPasswordField: React.SFC<AuthPasswordFieldProps> = ({
     }, 200)
   }
 
+  const classes = useStyles()
   const hintString = valid ? null : (
     <FormHelperText error={!valid} id='standard-weight-helper-text'>
       {hint}
     </FormHelperText>
   )
-
   return (
     <FormControl
       required
@@ -96,9 +80,7 @@ const AuthPasswordField: React.SFC<AuthPasswordFieldProps> = ({
         }
         labelWidth={80}
       />
-      <FormHelperText error={!valid} id='standard-weight-helper-text'>
-        {hintString}
-      </FormHelperText>
+      {hintString}
     </FormControl>
   )
 }

@@ -4,10 +4,15 @@ import Adapter from 'enzyme-adapter-react-16'
 
 import SignIn from './SignIn'
 import SignUp from './SignUp'
+import ConfirmSignUp from './ConfirmSignUp'
+import ConfirmSignUpEmail from './ConfirmSignUpEmail'
+import ResetPassword from './ResetPassword'
+
 import AuthLayout from './components/AuthLayout'
 import AuthButton from './components/AuthButton'
 import AuthEmailField from './components/AuthEmailField'
 import AuthPasswordField from './components/AuthPasswordField'
+import AuthCodeField from './components/AuthCodeField'
 
 configure({ adapter: new Adapter() })
 
@@ -26,6 +31,27 @@ describe('<SignIn />', () => {
 
 describe('<SignUp />', () => {
   const container = shallow(<SignUp />)
+  it('should match the snapshot', () => {
+    expect(container.html()).toMatchSnapshot()
+  })
+})
+
+describe('<ConfirmSignUp />', () => {
+  const container = shallow(<ConfirmSignUp />)
+  it('should match the snapshot', () => {
+    expect(container.html()).toMatchSnapshot()
+  })
+})
+
+describe('<ConfirmSignUpEmail />', () => {
+  const container = shallow(<ConfirmSignUpEmail />)
+  it('should match the snapshot', () => {
+    expect(container.html()).toMatchSnapshot()
+  })
+})
+
+describe('<ResetPassword />', () => {
+  const container = shallow(<ResetPassword />)
   it('should match the snapshot', () => {
     expect(container.html()).toMatchSnapshot()
   })
@@ -54,6 +80,13 @@ describe('<AuthEmailField />', () => {
 
 describe('<AuthPasswordField />', () => {
   const container = mount(<AuthPasswordField />)
+  it('should match the snapshot', () => {
+    expect(container.html()).toMatchSnapshot()
+  })
+})
+
+describe('<AuthCodeField />', () => {
+  const container = mount(<AuthCodeField />)
   it('should match the snapshot', () => {
     expect(container.html()).toMatchSnapshot()
   })

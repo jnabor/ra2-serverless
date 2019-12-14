@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     link: {
       margin: theme.spacing(3, 0, 2)
+    },
+    links: {
+      padding: '0px 5px'
     }
   })
 )
@@ -92,16 +95,20 @@ const Home: React.SFC<HomeProps> = () => {
       <AuthPasswordField setPassword={password => setPassword(password)} />
       <AuthButton disabled={disable}>Sign In</AuthButton>
       <Grid container>
-        <Grid item xs>
+        <Grid item xs className={classes.links}>
           <Link
+            href='#'
             onClick={() => history.push('/auth/resetpassword')}
             variant='body2'>
             Forgot password?
           </Link>
         </Grid>
-        <Grid item>
-          <Link onClick={() => history.push('/auth/signup')} variant='body2'>
-            {"Don't have an account? Sign Up"}
+        <Grid item className={classes.links}>
+          <Link
+            href='#'
+            onClick={() => history.push('/auth/signup')}
+            variant='body2'>
+            Sign Up
           </Link>
         </Grid>
       </Grid>

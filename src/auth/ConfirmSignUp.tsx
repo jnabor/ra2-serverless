@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Link, Grid, TextField } from '@material-ui/core'
+import { Link, Grid } from '@material-ui/core'
 
 import Layout from '../app/AppLayout'
 import Snackbar from '../common/Snackbar'
 
 import { AuthContext } from './auth-context'
+import AuthCodeField from './components/AuthCodeField'
 import AuthButton from './components/AuthButton'
 import AuthLayout from './components/AuthLayout'
 import { useStyles } from './components/styles'
@@ -16,19 +17,21 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
   const authContext = useContext(AuthContext)
   const [code, setCode] = useState<string>('')
   const [disable, setDisable] = useState<boolean>(true)
-  const [hint, setHint] = useState<string>('')
   const [error, setError] = useState<string>('')
+  const [message, setMessage] = useState<string>('')
   const history = useHistory()
 
+  useEffect(() => {
+    setDisable(!code)
+  }, [code])
+
   const submitHandler = (e: any) => {
-    e.preventDefault()
-    console.log('submit', code)
     e.preventDefault()
     authContext
       .confirmSignUp(code)
       .then(data => {
         console.log(data)
-        history.push('/auth')
+        history.push('/')
       })
       .catch(err => {
         console.error('error:', err)
@@ -36,18 +39,17 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
       })
   }
 
-  let delay: any = null
-  const validate = (code: string): any => {
-    if (delay !== null) {
-      clearTimeout(delay)
-    }
-    delay = setTimeout(() => {
-      const isValid = code.length === 6
-      setDisable(!isValid)
-      setHint(isValid ? '' : 'Incorrect code length.')
-      setCode(code)
-      delay = null
-    }, 300)
+  const resendHandler = () => {
+    setMessage('')
+    authContext
+      .resendSignUp()
+      .then(data => {
+        setMessage('Code resent to your email.')
+      })
+      .catch(err => {
+        console.error('error:', err)
+        setError(err)
+      })
   }
 
   const classes = useStyles()
@@ -55,30 +57,18 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
     <Layout title='RA2 Confirm Sign Up'>
       <AuthLayout title='Confirm'>
         <Snackbar variant='error' message={error} />
+        <Snackbar variant='success' message={message} />
         <form
           className={classes.form}
           onSubmit={e => submitHandler(e)}
           noValidate>
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            id='confirmation'
-            label='Confirmation Code'
-            name='confirmation'
-            helperText={hint}
-            onChange={e => validate(e.currentTarget.value)}
-          />
+          <AuthCodeField setCode={code => setCode(code)} />
           <AuthButton disabled={disable}>Confirm</AuthButton>
           <Grid container>
-            <Grid item xs></Grid>
-            <Grid item>
-              <Link
-                href='#'
-                onClick={() => history.push('/auth')}
-                variant='body2'>
-                {'Resend confirmation code'}
+            <Grid item xs className={classes.links}></Grid>
+            <Grid item className={classes.links}>
+              <Link href='#' onClick={() => resendHandler()} variant='body2'>
+                Resend code
               </Link>
             </Grid>
           </Grid>

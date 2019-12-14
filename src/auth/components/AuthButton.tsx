@@ -1,20 +1,7 @@
 import React from 'react'
 
 import Button from '@material-ui/core/Button'
-import {
-  useTheme,
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    submit: {
-      margin: theme.spacing(3, 0, 2)
-    }
-  })
-)
+import { useStyles } from './styles'
 
 export interface AuthButtonProps {
   children: any
@@ -22,7 +9,7 @@ export interface AuthButtonProps {
 }
 
 const AuthButton: React.SFC<AuthButtonProps> = ({ children, disabled }) => {
-  const classes = useStyles(useTheme())
+  const classes = useStyles()
 
   return (
     <Button

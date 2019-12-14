@@ -52,18 +52,18 @@ const AuthSignUp: React.SFC<AuthSignUpProps> = () => {
           <AuthPasswordField setPassword={password => setPassword(password)} />
           <AuthButton disabled={disable}>Sign Up</AuthButton>
           <Grid container>
-            <Grid item xs>
+            <Grid item xs className={classes.links}>
               <Link
                 href='#'
                 onClick={() => history.push('/auth')}
                 variant='body2'>
-                {'Already have account? Sign In'}
+                {'Sign In'}
               </Link>
             </Grid>
-            <Grid item>
+            <Grid item className={classes.links}>
               <Link
                 href='#'
-                onClick={() => history.push('/auth/confirm')}
+                onClick={() => history.push('/auth/signup/confirmemail')}
                 variant='body2'>
                 {'Confirm Sign Up'}
               </Link>

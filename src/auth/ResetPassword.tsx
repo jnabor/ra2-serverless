@@ -16,8 +16,7 @@ const AuthReset: React.SFC<AuthResetProps> = () => {
 
   const submitHandler = (e: any) => {
     e.preventDefault()
-    console.log('submit', e)
-    console.log(email)
+    console.log('reset password')
   }
 
   const classes = useStyles()
@@ -31,17 +30,6 @@ const AuthReset: React.SFC<AuthResetProps> = () => {
           noValidate>
           <AuthEmailField setEmail={email => setEmail(email)} />
           <AuthButton disabled={true}>Reset</AuthButton>
-          <Grid container>
-            <Grid item xs></Grid>
-            <Grid item>
-              <Link
-                href='#'
-                onClick={() => history.push('/auth/confirm')}
-                variant='body2'>
-                {'Already have confirmation code?'}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </AuthLayout>
     </Layout>
