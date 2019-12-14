@@ -10,7 +10,7 @@ test account: <br />
 email: 'dev@sonabstudios.com' <br />
 password: 'S0nabStudi0s#dev' <br />
 
-![Preview](ci_cd_pipeline.jpg)
+![Preview](public/ci_cd_pipeline.jpg)
 
 ---
 
