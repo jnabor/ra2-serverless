@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import {
@@ -79,6 +79,10 @@ const Home: React.SFC<HomeProps> = () => {
     }
   }
 
+  const setErrorMsg = useCallback((message: string) => {
+    setError(message)
+  }, [])
+
   const classes = useStyles(useTheme())
 
   const login = authContext.isAuth ? (
@@ -129,7 +133,11 @@ const Home: React.SFC<HomeProps> = () => {
                 SaaS Starter Kit with React AWS Amplify
               </Typography>
               {login}
-              <Snackbar variant='error' message={error} />
+              <Snackbar
+                variant='error'
+                message={error}
+                setMessage={message => setErrorMsg(message)}
+              />
             </div>
           </Container>
         </Layout>

@@ -7,6 +7,7 @@ import SignUp from './SignUp'
 import ConfirmSignUp from './ConfirmSignUp'
 import ConfirmSignUpEmail from './ConfirmSignUpEmail'
 import ResetPassword from './ResetPassword'
+import ConfirmResetPassword from './ConfirmResetPassword'
 
 import AuthLayout from './components/AuthLayout'
 import AuthButton from './components/AuthButton'
@@ -52,6 +53,13 @@ describe('<ConfirmSignUpEmail />', () => {
 
 describe('<ResetPassword />', () => {
   const container = shallow(<ResetPassword />)
+  it('should match the snapshot', () => {
+    expect(container.html()).toMatchSnapshot()
+  })
+})
+
+describe('<ConfirmResetPassword />', () => {
+  const container = shallow(<ConfirmResetPassword />)
   it('should match the snapshot', () => {
     expect(container.html()).toMatchSnapshot()
   })

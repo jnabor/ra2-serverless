@@ -22,7 +22,8 @@ password: 'S0nabStudi0s#dev' <br />
 - [ ] signin with facebook
 - [x] signin with email
   - [x] signup with email
-  - [ ] reset password
+  - [x] signup confirmation
+  - [x] reset password
 - [x] signout
 
 ### user module

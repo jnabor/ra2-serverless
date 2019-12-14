@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link, Grid } from '@material-ui/core'
 import Layout from '../app/AppLayout'
@@ -39,12 +39,20 @@ const AuthSignIn: React.SFC<AuthSignInProps> = () => {
       })
   }
 
+  const setErrorMsg = useCallback((message: string) => {
+    setError(message)
+  }, [])
+
   const classes = useStyles()
 
   return (
     <Layout title='RA2 Sign In'>
       <AuthLayout title='Sign In'>
-        <Snackbar variant='error' message={error} />
+        <Snackbar
+          variant='error'
+          message={error}
+          setMessage={message => setErrorMsg(message)}
+        />
         <form
           className={classes.form}
           onSubmit={e => submitHandler(e)}

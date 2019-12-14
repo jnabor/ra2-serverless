@@ -6,6 +6,7 @@ import SignUp from './SignUp'
 import ConfirmSignUp from './ConfirmSignUp'
 import ConfirmSignUpEmail from './ConfirmSignUpEmail'
 import ResetPassword from './ResetPassword'
+import ConfirmResetPassword from './ConfirmResetPassword'
 
 export interface AuthProps {}
 
@@ -21,6 +22,11 @@ const Auth: React.SFC<AuthProps> = () => {
         component={ConfirmSignUpEmail}
       />
       <Route exact path='/auth/resetpassword' component={ResetPassword} />
+      <Route
+        exact
+        path='/auth/resetpassword/confirm'
+        component={ConfirmResetPassword}
+      />
     </Switch>
   )
 }

@@ -1,29 +1,13 @@
 import React from 'react'
 import Layout from '../app/AppLayout'
 
-import {
-  useTheme,
-  createStyles,
-  makeStyles,
-  Theme
-} from '@material-ui/core/styles'
+import { useStyles } from './styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }
-  })
-)
 
 export interface AccessDeniedProps {}
 
 const AccessDenied: React.SFC<AccessDeniedProps> = () => {
-  const classes = useStyles(useTheme())
+  const classes = useStyles()
   return (
     <Layout title='RA2 Access Denied'>
       <CssBaseline />

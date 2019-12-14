@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Auth } from 'aws-amplify'
 import config from '../aws-exports'
 Auth.configure(config)
@@ -8,10 +8,16 @@ export interface AuthContextProps {
   email: string
   user: any
   signUp(username: string, password: string): Promise<any>
-  confirmSignUp(code: string): Promise<any>
-  resendSignUp(): Promise<any>
+  confirmSignUp(userEmail: string, code: string): Promise<any>
+  resendSignUp(userEmail: string): Promise<any>
   signIn(username: string, password: string): Promise<any>
   signOut(): Promise<any>
+  resetPassword(userEmail: string): Promise<any>
+  confirmResetPassword(
+    userEmail: string,
+    newPassword: string,
+    code: string
+  ): Promise<any>
 }
 
 export const AuthContext = React.createContext<AuthContextProps>({
@@ -22,7 +28,9 @@ export const AuthContext = React.createContext<AuthContextProps>({
   confirmSignUp: () => new Promise(reject => reject(0)),
   resendSignUp: () => new Promise(reject => reject(0)),
   signIn: () => new Promise(reject => reject(0)),
-  signOut: () => new Promise(reject => reject(0))
+  signOut: () => new Promise(reject => reject(0)),
+  resetPassword: () => new Promise(reject => reject(0)),
+  confirmResetPassword: () => new Promise(reject => reject(0))
 })
 
 export interface AuthContextProviderProps {
@@ -36,21 +44,16 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   const [email, setEmail] = useState<string>('')
   const [user, setUser] = useState<any>({})
 
-  useEffect(() => {
-    console.log('Checking auth')
-  })
-
-  const signUp = (email: string, password: string) => {
-    setEmail(email)
+  const signUp = useCallback((userEmail: string, password: string) => {
     return new Promise(async (resolve, reject) => {
       try {
         const { user } = await Auth.signUp({
-          username: email,
+          username: userEmail,
           password: password
         })
         console.log(user)
         setUser(user)
-        setEmail(email)
+        setEmail(userEmail)
         resolve(user)
       } catch (err) {
         console.log(err)
@@ -70,21 +73,10 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         reject(message)
       }
     })
-  }
+  }, [])
 
-  const confirmSignUp = (code: string) => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const { user } = await Auth.confirmSignUp(email, code)
-        resolve(user)
-      } catch (err) {
-        const message = err.message || 'An internal error occurred.'
-        reject(message)
-      }
-    })
-  }
-
-  const confirmSignUpEmail = (userEmail: string, code: string) => {
+  const confirmSignUp = useCallback((userEmail: string, code: string) => {
+    console.log('confirm sign up', userEmail, code)
     return new Promise(async (resolve, reject) => {
       try {
         const { user } = await Auth.confirmSignUp(userEmail, code)
@@ -94,16 +86,17 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         reject(message)
       }
     })
-  }
+  }, [])
 
-  const signIn = (email: string, password: string) => {
-    setEmail(email)
+  const signIn = useCallback((userEmail: string, password: string) => {
+    console.log('sign in', userEmail, password)
     return new Promise(async (resolve, reject) => {
       try {
         const { user } = await Auth.signIn({
-          username: email,
+          username: userEmail,
           password: password
         })
+        setEmail(userEmail)
         setIsAuth(true)
         resolve(user)
       } catch (err) {
@@ -111,11 +104,12 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         reject(message)
       }
     })
-  }
+  }, [])
 
-  const resendSignUp = () => {
+  const resendSignUp = useCallback((userEmail: string) => {
+    console.log('resend sign up', userEmail)
     return new Promise((resolve, reject) => {
-      Auth.resendSignUp(email)
+      Auth.resendSignUp(userEmail)
         .then(data => {
           resolve(data)
         })
@@ -124,10 +118,10 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           reject(message)
         })
     })
-  }
+  }, [])
 
-  const signOut = () => {
-    setEmail(email)
+  const signOut = useCallback(() => {
+    console.log('sign out')
     return new Promise((resolve, reject) => {
       Auth.signOut()
         .then(data => {
@@ -139,7 +133,37 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           reject(message)
         })
     })
-  }
+  }, [])
+
+  const resetPassword = useCallback((userEmail: string) => {
+    console.log('reset password', userEmail)
+    return new Promise((resolve, reject) => {
+      Auth.forgotPassword(userEmail)
+        .then(data => {
+          setEmail(userEmail)
+          resolve(data)
+        })
+        .catch(err => {
+          const message = err.message || 'An internal error occurred.'
+          reject(message)
+        })
+    })
+  }, [])
+
+  const confirmResetPassword = useCallback(
+    (userEmail: string, newPassword: string, code: string) => {
+      console.log('confirm reset password', userEmail, code, newPassword)
+      return new Promise((resolve, reject) => {
+        Auth.forgotPasswordSubmit(userEmail, code, newPassword)
+          .then(data => resolve(data))
+          .catch(err => {
+            const message = err.message || 'An internal error occurred.'
+            reject(message)
+          })
+      })
+    },
+    []
+  )
 
   return (
     <AuthContext.Provider
@@ -151,7 +175,9 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         confirmSignUp: confirmSignUp,
         resendSignUp: resendSignUp,
         signIn: signIn,
-        signOut: signOut
+        signOut: signOut,
+        resetPassword: resetPassword,
+        confirmResetPassword: confirmResetPassword
       }}>
       {children}
     </AuthContext.Provider>

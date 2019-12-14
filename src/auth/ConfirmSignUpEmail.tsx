@@ -1,20 +1,20 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Link, Grid, TextField } from '@material-ui/core'
+import { Link, Grid } from '@material-ui/core'
 
 import Layout from '../app/AppLayout'
 import Snackbar from '../common/Snackbar'
 
 import { AuthContext } from './auth-context'
-import AuthCodeField from './components/AuthCodeField'
 import AuthEmailField from './components/AuthEmailField'
+import AuthCodeField from './components/AuthCodeField'
 import AuthButton from './components/AuthButton'
 import AuthLayout from './components/AuthLayout'
 import { useStyles } from './components/styles'
 
-export interface AuthConfirmSignUpProps {}
+export interface AuthConfirmSignUpEmailProps {}
 
-const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
+const AuthConfirmSignUpEmail: React.SFC<AuthConfirmSignUpEmailProps> = () => {
   const authContext = useContext(AuthContext)
   const [email, setEmail] = useState<string>('')
   const [code, setCode] = useState<string>('')
@@ -29,13 +29,21 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
 
   const submitHandler = (e: any) => {
     e.preventDefault()
-    console.log('resend confirmation code sign up', code)
+    authContext
+      .confirmSignUp(email, code)
+      .then(data => {
+        console.log(data)
+        history.push('/')
+      })
+      .catch(err => {
+        console.error('error:', err)
+        setError(err)
+      })
   }
 
   const resendHandler = () => {
-    setMessage('')
     authContext
-      .resendSignUp()
+      .resendSignUp(email)
       .then(data => {
         setMessage('Code resent to your email.')
       })
@@ -45,11 +53,28 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
       })
   }
 
+  const setErrorMsg = useCallback((message: string) => {
+    setError(message)
+  }, [])
+
+  const setSuccessMsg = useCallback((message: string) => {
+    setMessage(message)
+  }, [])
+
   const classes = useStyles()
   return (
     <Layout title='RA2 Confirm Sign Up'>
-      <AuthLayout title='Confirm'>
-        <Snackbar variant='error' message={error} />
+      <AuthLayout title='Confirm Sign Up'>
+        <Snackbar
+          variant='error'
+          message={error}
+          setMessage={message => setErrorMsg(message)}
+        />
+        <Snackbar
+          variant='success'
+          message={message}
+          setMessage={message => setSuccessMsg(message)}
+        />
         <form
           className={classes.form}
           onSubmit={e => submitHandler(e)}
@@ -71,4 +96,4 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
   )
 }
 
-export default AuthConfirmSignUp
+export default AuthConfirmSignUpEmail

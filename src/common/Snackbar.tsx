@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useState, useEffect } from 'react'
 import clsx from 'clsx'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 import ErrorIcon from '@material-ui/icons/Error'
@@ -88,11 +88,26 @@ const useStyles2 = makeStyles((theme: Theme) => ({
 export interface SnackBarProps {
   variant: keyof typeof variantIcon
   message: string
+  setMessage: (message: string) => void
 }
 
-const SnackBar: React.SFC<SnackBarProps> = ({ variant, message }) => {
+const SnackBar: React.SFC<SnackBarProps> = ({
+  variant,
+  message,
+  setMessage
+}) => {
   const classes = useStyles2()
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    console.log('message changed', message)
+    setOpen(message === '' ? false : true)
+  }, [message])
+
+  useEffect(() => {
+    console.log('open changed', open)
+    !open && setMessage('')
+  }, [open])
 
   const handleClose = (event?: SyntheticEvent, reason?: string) => {
     event && console.log(event)
@@ -102,24 +117,23 @@ const SnackBar: React.SFC<SnackBarProps> = ({ variant, message }) => {
     setOpen(false)
   }
 
-  const bar =
-    message === '' ? null : (
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center'
-        }}
-        open={open}
-        autoHideDuration={3000}
-        onClose={handleClose}>
-        <MySnackbarContentWrapper
-          onClose={handleClose}
-          className={classes.margin}
-          variant={variant}
-          message={message}
-        />
-      </Snackbar>
-    )
+  const bar = (
+    <Snackbar
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center'
+      }}
+      open={open}
+      autoHideDuration={3000}
+      onClose={handleClose}>
+      <MySnackbarContentWrapper
+        onClose={handleClose}
+        className={classes.margin}
+        variant={variant}
+        message={message}
+      />
+    </Snackbar>
+  )
 
   return <div>{bar}</div>
 }

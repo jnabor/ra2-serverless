@@ -6,6 +6,7 @@ import Layout from '../app/AppLayout'
 import Snackbar from '../common/Snackbar'
 
 import { AuthContext } from './auth-context'
+import AuthPasswordField from './components/AuthPasswordField'
 import AuthCodeField from './components/AuthCodeField'
 import AuthButton from './components/AuthButton'
 import AuthLayout from './components/AuthLayout'
@@ -15,6 +16,7 @@ export interface AuthConfirmSignUpProps {}
 
 const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
   const authContext = useContext(AuthContext)
+  const [password, setPassword] = useState<string>('')
   const [code, setCode] = useState<string>('')
   const [disable, setDisable] = useState<boolean>(true)
   const [error, setError] = useState<string>('')
@@ -22,13 +24,13 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
   const history = useHistory()
 
   useEffect(() => {
-    setDisable(!code)
-  }, [code])
+    setDisable(!(code && password))
+  }, [code, password])
 
   const submitHandler = (e: any) => {
     e.preventDefault()
     authContext
-      .confirmSignUp(authContext.email, code)
+      .confirmResetPassword(authContext.email, password, code)
       .then(data => {
         console.log(data)
         history.push('/')
@@ -61,8 +63,8 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
 
   const classes = useStyles()
   return (
-    <Layout title='RA2 Confirm Sign Up'>
-      <AuthLayout title='Confirm Sign Up'>
+    <Layout title='RA2 Confirm Reset'>
+      <AuthLayout title='Reset Password'>
         <Snackbar
           variant='error'
           message={error}
@@ -77,6 +79,7 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
           className={classes.form}
           onSubmit={e => submitHandler(e)}
           noValidate>
+          <AuthPasswordField setPassword={password => setPassword(password)} />
           <AuthCodeField setCode={code => setCode(code)} />
           <AuthButton disabled={disable}>Confirm</AuthButton>
           <Grid container>
