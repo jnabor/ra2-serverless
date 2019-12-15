@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "ra2serverless30d8f862_identitypool_30d8f862",
+    "identityPoolName": "ra2serverlessf0924759_identitypool_f0924759",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "ra2ser30d8f862",
-    "userPoolName": "ra2serverless30d8f862_userpool_30d8f862",
+    "resourceNameTruncated": "ra2serf0924759",
+    "userPoolName": "ra2serverlessf0924759_userpool_f0924759",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "ra2ser30d8f862_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ra2serf0924759_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "ra2serverless30d8f862",
+    "resourceName": "ra2serverlessf0924759",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -49,18 +49,13 @@
     "usernameAttributes": [
         "email"
     ],
-    "triggers": "{}",
-    "hostedUIDomainName": "ra2-serverless-dev-20191211",
+    "hostedUIDomainName": "ra2-serverless-prod",
     "authProvidersUserPool": [
         "Facebook",
         "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://ra2-serverless-dev.sonabstudios.com/\"],\"LogoutURLs\":[\"https://ra2-serverless-dev.sonabstudios.com/\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://ra2-signin.sonabstudios.com/\"],\"LogoutURLs\":[\"https://ra2-signout.sonabstudios.com/\"]}",
     "userPoolGroupList": [],
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }

@@ -1,4 +1,7 @@
 {
+    "providers": [
+        "awscloudformation"
+    ],
     "projectName": "ra2-serverless",
     "version": "2.0",
     "frontend": "javascript",
@@ -8,10 +11,7 @@
             "SourceDir": "src",
             "DistributionDir": "build",
             "BuildCommand": "npm run build",
-            "StartCommand": "npm run start"
+            "StartCommand": "npm start"
         }
-    },
-    "providers": [
-        "awscloudformation"
-    ]
+    }
 }
