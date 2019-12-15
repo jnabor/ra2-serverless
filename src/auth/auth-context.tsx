@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Auth } from 'aws-amplify'
 import config from '../aws-exports'
 Auth.configure(config)
@@ -43,6 +43,18 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   const [isAuth, setIsAuth] = useState<boolean>(false)
   const [email, setEmail] = useState<string>('')
   const [user, setUser] = useState<any>({})
+
+  useEffect(() => {
+    Auth.currentAuthenticatedUser()
+      .then(data => {
+        setUser(data)
+        setEmail(data.attributes.email)
+        setIsAuth(true)
+      })
+      .catch(err => {
+        console.log('no current authenticated user')
+      })
+  }, [])
 
   const signUp = useCallback((userEmail: string, password: string) => {
     return new Promise(async (resolve, reject) => {
@@ -97,6 +109,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           password: password
         })
         setEmail(userEmail)
+        setUser(user)
         setIsAuth(true)
         resolve(user)
       } catch (err) {
