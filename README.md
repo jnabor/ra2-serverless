@@ -1,10 +1,10 @@
 # RA2™ Serverless
 
-## ra2-serverless
+## ra2-serverless full stack with ci/cd
 
 ### SaaS Starter Kit with React AWS Amplify
 
-#### see live demo @ https://dev.d2jrlj03puhlnd.amplifyapp.com/
+#### see live demo @ https://master.d2jrlj03puhlnd.amplifyapp.com/
 
 test account: <br />
 email: 'dev@sonabstudios.com' <br />
@@ -12,11 +12,9 @@ password: 'S0nabStudi0s#dev' <br />
 
 ![Preview](public/ci_cd_pipeline.jpg)
 
----
+# Features
 
-## Features
-
-### auth module
+### Auth module
 
 - [ ] signin with google
 - [ ] signin with facebook
@@ -26,43 +24,27 @@ password: 'S0nabStudi0s#dev' <br />
   - [x] reset password
 - [x] signout
 
-### user module
+### User module
 
 - [ ] attributes: name
 - [ ] avatar
 
----
+### Sample Applications
 
-## Samples Applications
+#### real time canvas
 
-### real time canvas
+#### chat application
 
-- [ ] Doodle with others in realtime.
-- [ ] Real-time collaboration
+#### notes app
 
-### chat application
+#### qr code generator
 
-- [ ] Real-time offline ready messaging
-- [ ] Push notifications
-
-### notes app
-
-- [ ] Take down notes and share to others
-- [ ] To do list
-
-### qr code generator
-
----
-
-### themes
+#### dynamic themes
 
 - [x] light
 - [ ] dark
-- [ ] joker
 
----
-
-## Tech Stack
+# Tech Stack
 
 - TypeScript
 - React + Hooks
@@ -72,3 +54,50 @@ password: 'S0nabStudi0s#dev' <br />
 - Unit Tests with Jest + Enzyme
 - Functional Tests with Cypress
 - CI/CD with Amplify Console
+
+## Deploy with the AWS Amplify Console
+
+The AWS Amplify Console provides hosting for fullstack serverless web apps. [Learn more](https://console.amplify.aws). Deploy this app to your AWS account with a single click:
+
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/aws-samples/create-react-app-auth-amplify)
+
+The Amplify Console will fork this repo in your GitHub account, and then build and deploy your backend and frontend in a single workflow. Your app will be available at `https://master.appid.amplifyapp.com`.
+
+## Run locally with the Amplify CLI
+
+1. Clone the repo that was just forked in your account
+
+```
+git clone git@github.com:<username>/create-react-app-auth-amplify.git
+
+cd create-react-app-auth-amplify && npm install
+```
+
+2. Import the backend environment deployed by the Amplify Console to your repo (the `amplify/team-provider.json` file contains information on all backend environments in your AWS account). The GIF below shows how you to copy the `amplify env import` command from the Amplify Console.
+
+![Preview](public/import-backend.gif)
+
+3. Paste this command into your terminal at the root of your repo. You should see the `amplify/team-provider.json` updated with a backend named `amplify`.
+
+```
+amplify env import --name amplify --config "{<stack>}" --awsInfo "{<profile>}" --yes
+
+Successfully added environment from your project
+```
+
+3. Initialize the Amplify CLI with the `amplify` environment.
+
+```
+amplify init
+? Do you want to use an existing environment? Yes
+? Choose the environment you would like to use: (Use arrow keys)
+> amplify
+```
+
+4. Run locally
+
+```
+npm start
+```
+
+## Pull Requests to dev branch are welcome!
