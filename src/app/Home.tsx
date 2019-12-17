@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react'
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useMemo
+} from 'react'
 import { useHistory } from 'react-router-dom'
 
 import {
@@ -85,6 +91,8 @@ const Home: React.SFC<HomeProps> = () => {
 
   const classes = useStyles(useTheme())
 
+  const appImage = useMemo(() => <AppImage />, [])
+
   const login = authContext.isAuth ? (
     <Button
       color='primary'
@@ -142,7 +150,7 @@ const Home: React.SFC<HomeProps> = () => {
           </Container>
         </Layout>
       </Grid>
-      <AppImage />
+      {appImage}
     </Grid>
   )
 }

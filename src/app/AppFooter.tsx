@@ -14,8 +14,10 @@ function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Jayson Nabor ™ '}
-      <Link color='inherit' href='https://sonabstudios.github.io/molotov/'>
-        Molotov
+      <Link
+        color='inherit'
+        href='https://github.com/sonabstudios/ra2-serverless/'>
+        RA2™
       </Link>{' '}
       {new Date().getFullYear()}
     </Typography>

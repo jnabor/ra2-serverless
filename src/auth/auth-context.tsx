@@ -1,12 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react'
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth/lib/types'
 import { Auth } from 'aws-amplify'
-import config from '../aws-exports'
-Auth.configure(config)
 
 export interface AuthContextProps {
   isAuth: boolean
+  provider: string
   email: string
   user: any
+  googleSignIn(): Promise<any>
   signUp(username: string, password: string): Promise<any>
   confirmSignUp(userEmail: string, code: string): Promise<any>
   resendSignUp(userEmail: string): Promise<any>
@@ -22,8 +23,10 @@ export interface AuthContextProps {
 
 export const AuthContext = React.createContext<AuthContextProps>({
   isAuth: false,
+  provider: '',
   email: '',
-  user: {},
+  user: null,
+  googleSignIn: () => new Promise(reject => reject(0)),
   signUp: () => new Promise(reject => reject(0)),
   confirmSignUp: () => new Promise(reject => reject(0)),
   resendSignUp: () => new Promise(reject => reject(0)),
@@ -41,6 +44,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   children
 }) => {
   const [isAuth, setIsAuth] = useState<boolean>(false)
+  const [provider, setProvider] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [user, setUser] = useState<any>({})
 
@@ -55,6 +59,19 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         console.log('no current authenticated user')
       })
   }, [])
+
+  const googleSignIn = () => {
+    console.log('sign in with google')
+    return new Promise(async (resolve, reject) => {
+      Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })
+        .then(data => {
+          resolve(data)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  }
 
   const signUp = useCallback((userEmail: string, password: string) => {
     return new Promise(async (resolve, reject) => {
@@ -138,6 +155,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     return new Promise((resolve, reject) => {
       Auth.signOut()
         .then(data => {
+          setUser(null)
           setIsAuth(false)
           resolve(data)
         })
@@ -182,9 +200,11 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     <AuthContext.Provider
       value={{
         isAuth: isAuth,
+        provider: provider,
         email: email,
-        signUp: signUp,
         user: user,
+        googleSignIn: googleSignIn,
+        signUp: signUp,
         confirmSignUp: confirmSignUp,
         resendSignUp: resendSignUp,
         signIn: signIn,

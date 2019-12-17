@@ -1,19 +1,13 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 
-import {
-  useTheme,
-  makeStyles,
-  createStyles,
-  Theme
-} from '@material-ui/core/styles'
+import { makeStyles, createStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     image: {
       backgroundImage: 'url(https://source.unsplash.com/random)',
       backgroundRepeat: 'no-repeat',
-      backgroundColor: theme.palette.grey[50],
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }
@@ -23,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export interface RandomImageProps {}
 
 const RandomImage: React.SFC<RandomImageProps> = () => {
-  const classes = useStyles(useTheme())
+  const classes = useStyles()
   return <Grid item xs={false} sm={4} md={7} className={classes.image} />
 }
 

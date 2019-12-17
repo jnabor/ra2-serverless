@@ -27,6 +27,7 @@ password: 'S0nabStudi0s#dev' <br />
 ### User module
 
 - [ ] attributes: name
+- [ ] change password
 - [ ] avatar
 
 ### Sample Applications

@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "ra2serverless30d8f862_identitypool_30d8f862",
+    "identityPoolName": "ra2serverlessf0dbff30_identitypool_f0dbff30",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "ra2ser30d8f862",
-    "userPoolName": "ra2serverless30d8f862_userpool_30d8f862",
+    "resourceNameTruncated": "ra2serf0dbff30",
+    "userPoolName": "ra2serverlessf0dbff30_userpool_f0dbff30",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "ra2ser30d8f862_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ra2serf0dbff30_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "ra2serverless30d8f862",
+    "resourceName": "ra2serverlessf0dbff30",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -50,13 +50,12 @@
         "email"
     ],
     "triggers": "{}",
-    "hostedUIDomainName": "ra2-serverless-dev-20191211",
+    "hostedUIDomainName": "",
     "authProvidersUserPool": [
-        "Facebook",
         "Google"
     ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://ra2-serverless-dev.sonabstudios.com/\"],\"LogoutURLs\":[\"https://ra2-serverless-dev.sonabstudios.com/\"]}",
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\",\"https://dev.d2jrlj03puhlnd.amplifyapp.com/\",\"https://master.d2jrlj03puhlnd.amplifyapp.com/\"],\"LogoutURLs\":[\"http://localhost:3000/\",\"https://dev.d2jrlj03puhlnd.amplifyapp.com/\",\"https://master.d2jrlj03puhlnd.amplifyapp.com/\"]}",
     "userPoolGroupList": [],
     "parentStack": {
         "Ref": "AWS::StackId"

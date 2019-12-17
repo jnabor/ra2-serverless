@@ -29,6 +29,16 @@ export const useStyles = makeStyles((theme: Theme = useTheme()) =>
     },
     links: {
       padding: '0px 5px'
+    },
+    google: {
+      marginTop: theme.spacing(2),
+      backgroundColor: 'white',
+      fontWeight: 600,
+      color: theme.palette.grey[600],
+      paddingTop: '12px'
+    },
+    gicon: {
+      marginRight: '10px'
     }
   })
 )
