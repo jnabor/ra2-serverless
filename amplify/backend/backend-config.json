@@ -1,9 +1,0 @@
-{
-	"auth": {
-		"ra2serverlessf0924759": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": []
-		}
-	}
-}
