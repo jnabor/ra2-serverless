@@ -2,12 +2,12 @@
 
 const awsmobile = {
     "aws_project_region": "ap-southeast-1",
-    "aws_cognito_identity_pool_id": "ap-southeast-1:ac12a39e-81b3-410a-a4e8-3f9555ee5141",
+    "aws_cognito_identity_pool_id": "ap-southeast-1:bbcaf30d-4cae-4de6-a199-cc0e59e9b745",
     "aws_cognito_region": "ap-southeast-1",
-    "aws_user_pools_id": "ap-southeast-1_zqOH9lt6B",
-    "aws_user_pools_web_client_id": "25o2g52vi9nd51ira6heov4jdq",
+    "aws_user_pools_id": "ap-southeast-1_iJvX9R7RV",
+    "aws_user_pools_web_client_id": "23dh4b2jv56qoovs13ga8vqjre",
     "oauth": {
-        "domain": "ra2-serverless-master.auth.ap-southeast-1.amazoncognito.com",
+        "domain": "ra2-serverless-dev.auth.ap-southeast-1.amazoncognito.com",
         "scope": [
             "phone",
             "email",
@@ -15,8 +15,8 @@ const awsmobile = {
             "profile",
             "aws.cognito.signin.user.admin"
         ],
-        "redirectSignIn": "https://ra2.sonabstudios.com/",
-        "redirectSignOut": "https://ra2.sonabstudios.com/",
+        "redirectSignIn": "https://ra2-dev.sonabstudios.com/,http://localhost:3000/",
+        "redirectSignOut": "https://ra2-dev.sonabstudios.com/,http://localhost:3000/",
         "responseType": "code"
     },
     "federationTarget": "COGNITO_USER_POOLS"
