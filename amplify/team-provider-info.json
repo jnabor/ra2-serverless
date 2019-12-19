@@ -1,20 +1,40 @@
 {
-    "prod": {
+    "dev": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-ra2-serverless-prod-75550-authRole",
-            "UnauthRoleArn": "arn:aws:iam::815621908682:role/amplify-ra2-serverless-prod-75550-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::815621908682:role/amplify-ra2-serverless-prod-75550-authRole",
+            "AuthRoleName": "amplify-ra2-serverless-dev-215255-authRole",
+            "UnauthRoleArn": "arn:aws:iam::815621908682:role/amplify-ra2-serverless-dev-215255-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::815621908682:role/amplify-ra2-serverless-dev-215255-authRole",
             "Region": "ap-southeast-1",
-            "DeploymentBucketName": "amplify-ra2-serverless-prod-75550-deployment",
-            "UnauthRoleName": "amplify-ra2-serverless-prod-75550-unauthRole",
-            "StackName": "amplify-ra2-serverless-prod-75550",
-            "StackId": "arn:aws:cloudformation:ap-southeast-1:815621908682:stack/amplify-ra2-serverless-prod-75550/ec3ff1b0-21f1-11ea-9b7f-06cd2d6445ec",
+            "DeploymentBucketName": "amplify-ra2-serverless-dev-215255-deployment",
+            "UnauthRoleName": "amplify-ra2-serverless-dev-215255-unauthRole",
+            "StackName": "amplify-ra2-serverless-dev-215255",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:815621908682:stack/amplify-ra2-serverless-dev-215255/db6ec620-2266-11ea-9c5e-0ad08b3552b8",
             "AmplifyAppId": "d2r8aqy6myuj1d"
         },
         "categories": {
             "auth": {
-                "ra2serverless56a3b037": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"552618845303798\",\"client_secret\":\"●●●●●●●●\"},{\"ProviderName\":\"Google\",\"client_id\":\"338916328700-qgv03lpno1g6paqcr24p2ta5b28go9k3.apps.googleusercontent.com\",\"client_secret\":\"UiqiNAcHMD5wSRE0r6EXSf0r\"}]"
+                "ra2serverless240b4340": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"},{\"ProviderName\":\"Google\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"}]"
+                }
+            }
+        }
+    },
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-ra2-serverless-prod-220132-authRole",
+            "UnauthRoleArn": "arn:aws:iam::815621908682:role/amplify-ra2-serverless-prod-220132-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::815621908682:role/amplify-ra2-serverless-prod-220132-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "amplify-ra2-serverless-prod-220132-deployment",
+            "UnauthRoleName": "amplify-ra2-serverless-prod-220132-unauthRole",
+            "StackName": "amplify-ra2-serverless-prod-220132",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:815621908682:stack/amplify-ra2-serverless-prod-220132/0f7c77e0-2268-11ea-8206-06a52c6ee8f8",
+            "AmplifyAppId": "d2r8aqy6myuj1d"
+        },
+        "categories": {
+            "auth": {
+                "ra2serverless240b4340": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"},{\"ProviderName\":\"Google\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"}]"
                 }
             }
         }
