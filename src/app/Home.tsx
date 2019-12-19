@@ -16,6 +16,7 @@ import {
   Typography
 } from '@material-ui/core'
 
+import GoogleSignIn from '../auth/components/GoogleSignIn'
 import Button from '@material-ui/core/Button'
 import Snackbar from '../common/Snackbar'
 import { AuthContext } from '../auth/auth-context'
@@ -140,6 +141,7 @@ const Home: React.SFC<HomeProps> = () => {
               <Typography variant='subtitle2'>
                 SaaS Starter Kit with React AWS Amplify
               </Typography>
+              <GoogleSignIn />
               {login}
               <Snackbar
                 variant='error'

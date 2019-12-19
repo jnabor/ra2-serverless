@@ -14,7 +14,7 @@
         "categories": {
             "auth": {
                 "ra2serverless240b4340": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"},{\"ProviderName\":\"Google\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"}]"
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"},{\"ProviderName\":\"Google\",\"client_id\":\"338916328700-qgv03lpno1g6paqcr24p2ta5b28go9k3.apps.googleusercontent.com\",\"client_secret\":\"UiqiNAcHMD5wSRE0r6EXSf0r\"}]"
                 }
             }
         }
