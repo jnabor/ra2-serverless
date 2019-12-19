@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"ra2serverless240b4340": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
