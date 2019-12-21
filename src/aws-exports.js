@@ -15,11 +15,11 @@ const awsmobile = {
             "profile",
             "aws.cognito.signin.user.admin"
         ],
-        "redirectSignIn": "https://ra2-dev.sonabstudios.com/,http://localhost:3000/",
+        "redirectSignIn": "http://localhost:3000/,https://ra2-serverless-dev.auth.ap-southeast-1.amazoncognito.com/",
         "redirectSignOut": "https://ra2-dev.sonabstudios.com/,http://localhost:3000/",
         "responseType": "code"
     },
-    "federationTarget": "COGNITO_USER_POOLS"
+    "federationTarget": "COGNITO_USER_AND_IDENTITY_POOLS"
 };
 
 

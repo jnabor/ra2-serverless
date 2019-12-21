@@ -19,7 +19,7 @@ describe('The Home Page', () => {
   })
 
   it('cy.title() - get the title', () => {
-    cy.title().should('include', 'RA2 Home')
+    cy.title().should('include', 'RA2 Serverless')
   })
 })
 

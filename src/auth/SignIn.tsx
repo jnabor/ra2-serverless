@@ -6,6 +6,8 @@ import Snackbar from '../common/Snackbar'
 
 import { AuthContext } from './auth-context'
 import GoogleSignIn from './components/GoogleSignIn'
+import HostedUiSignIn from './components/HostedUiSignIn'
+import FacebookSignIn from './components/FacebookSignIn'
 import AuthButton from './components/AuthButton'
 import AuthEmailField from './components/AuthEmailField'
 import AuthPasswordField from './components/AuthPasswordField'
@@ -50,6 +52,8 @@ const AuthSignIn: React.SFC<AuthSignInProps> = () => {
     <Layout title='RA2 Sign In'>
       <AuthLayout title='Sign In'>
         <GoogleSignIn />
+        <FacebookSignIn />
+        <HostedUiSignIn />
         <Snackbar
           variant='error'
           message={error}

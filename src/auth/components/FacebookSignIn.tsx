@@ -3,11 +3,11 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../auth-context'
 import Button from '@material-ui/core/Button'
 import { useStyles } from './styles'
-import GoogleIcon from './GoogleIcon'
+import facebookLogo from '../../static/facebook.png'
 
-export interface GoogleSignInProps {}
+export interface FacebookSignInProps {}
 
-const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
+const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
   const authContext = useContext(AuthContext)
 
   const signInHandler = () => {
@@ -22,6 +22,7 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
   return (
     <Button
       fullWidth
+      disabled={true}
       variant='contained'
       onClick={() => {
         signInHandler()
@@ -30,14 +31,16 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
       className={classes.google}>
       <div className={classes.container}>
         <div className={classes.fsignLogo}>
-          <GoogleIcon />
+          <img style={{ height: '22px' }} src={facebookLogo} />
         </div>
         <div className={classes.fsignLabel}>
-          {authContext.isAuth ? 'Signed In with Google' : 'Sign In with Google'}
+          {authContext.isAuth
+            ? 'Signed In with Facebook'
+            : 'Sign In with Facebook'}
         </div>
       </div>
     </Button>
   )
 }
 
-export default GoogleSignIn
+export default FacebookSignIn

@@ -49,6 +49,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   const [user, setUser] = useState<any>({})
 
   useEffect(() => {
+    console.log('checking for authenticated user...')
     Auth.currentAuthenticatedUser()
       .then(data => {
         setUser(data)

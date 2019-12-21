@@ -16,7 +16,10 @@ import {
   Typography
 } from '@material-ui/core'
 
+import logo from '../static/ra2.png'
+import HostedUiSignIn from '../auth/components/HostedUiSignIn'
 import GoogleSignIn from '../auth/components/GoogleSignIn'
+import FacebookSignIn from '../auth/components/FacebookSignIn'
 import Button from '@material-ui/core/Button'
 import Snackbar from '../common/Snackbar'
 import { AuthContext } from '../auth/auth-context'
@@ -56,6 +59,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     links: {
       padding: '0px 5px'
+    },
+    logo: {
+      height: '48px',
+      marginBottom: theme.spacing(1)
     }
   })
 )
@@ -131,10 +138,11 @@ const Home: React.SFC<HomeProps> = () => {
   return (
     <Grid container component='main' className={classes.root}>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <Layout title='RA2 Home'>
+        <Layout title='RA2 Serverless'>
           <CssBaseline />
           <Container maxWidth='xs'>
             <div className={classes.paper}>
+              <img className={classes.logo} src={logo} />
               <Typography variant='h5' gutterBottom>
                 RA2™ Serverless
               </Typography>
@@ -142,6 +150,8 @@ const Home: React.SFC<HomeProps> = () => {
                 SaaS Starter Kit with React AWS Amplify
               </Typography>
               <GoogleSignIn />
+              <FacebookSignIn />
+              <HostedUiSignIn />
               {login}
               <Snackbar
                 variant='error'

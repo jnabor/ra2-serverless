@@ -33,12 +33,27 @@ export const useStyles = makeStyles((theme: Theme = useTheme()) =>
     google: {
       marginTop: theme.spacing(2),
       backgroundColor: 'white',
-      fontWeight: 600,
-      color: theme.palette.grey[600],
-      paddingTop: '12px'
+      fontWeight: 500,
+      color: theme.palette.grey[600]
     },
-    gicon: {
-      marginRight: '10px'
+    container: {
+      display: 'grid',
+      width: '100%',
+      gridTemplateColumns: 'repeat(12, 2fr)'
+    },
+    fsignLogo: {
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gridColumnEnd: 'span 4'
+    },
+    fsignLabel: {
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'left',
+      gridColumnEnd: 'span 8'
     }
   })
 )
