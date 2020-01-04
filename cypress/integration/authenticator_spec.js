@@ -4,8 +4,8 @@ describe('Authenticator:', function() {
     cy.visit('/auth')
   })
 
-  describe('Sign In:', () => {
-    it('allows a user to signin', () => {
+  describe('Auth flow:', () => {
+    it('allows a user to sign in', () => {
       cy.get('button')
         .eq(2)
         .should('be.disabled')
@@ -19,13 +19,49 @@ describe('Authenticator:', function() {
         .eq(2)
         .should('be.enabled')
         .click()
-      cy.contains('Dashboard')
 
+      cy.contains('Dashboard')
       cy.get('button')
         .eq(0)
+
         .click()
 
       cy.url().should('include', '/dashboard')
+    })
+
+    it('allows a user to sign out', () => {
+      cy.get('input')
+        .eq(0)
+        .type('dev@sonabstudios.com')
+      cy.get('input')
+        .eq(1)
+        .type('S0nabStudi0s#dev')
+      cy.get('button')
+        .eq(2)
+        .click()
+      cy.contains('Dashboard')
+      cy.get('button')
+        .eq(0)
+        .click()
+      cy.get('button')
+        .eq(2)
+        .click()
+
+      cy.get('button')
+        .eq(0)
+        .contains('Email')
+
+      cy.get('button')
+        .eq(1)
+        .contains('Google')
+
+      cy.get('button')
+        .eq(2)
+        .contains('Facebook')
+
+      cy.get('button')
+        .eq(3)
+        .contains('Hosted')
     })
   })
 })
