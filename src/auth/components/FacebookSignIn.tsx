@@ -11,10 +11,7 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
   const authContext = useContext(AuthContext)
 
   const signInHandler = () => {
-    authContext
-      .googleSignIn()
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
+    authContext.federatedSignIn('facebook')
   }
 
   const classes = useStyles()
@@ -22,7 +19,6 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
   return (
     <Button
       fullWidth
-      disabled={true}
       variant='contained'
       onClick={() => {
         signInHandler()

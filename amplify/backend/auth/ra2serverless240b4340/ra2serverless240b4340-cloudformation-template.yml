@@ -113,24 +113,12 @@ Parameters:
   dependsOn:
     Type: CommaDelimitedList
         
-  thirdPartyAuth:
-    Type: String
-                    
-  authProviders:
-    Type: CommaDelimitedList
-        
   userPoolGroups:
     Type: String
               
   adminQueries:
     Type: String
             
-  facebookAppId:
-    Type: String
-              
-  googleClientId:
-    Type: String
-              
   hostedUIProviderCreds:
     Type: String
               
@@ -710,7 +698,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties: 
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'ra2serverless240b4340_identitypool_240b4340', !Join ['',['ra2serverless240b4340_identitypool_240b4340', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'ra2serverless240b4340_identitypool_34543397', !Join ['',['ra2serverless240b4340_identitypool_34543397', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient
@@ -722,15 +710,6 @@ Resources:
             - cognito-idp.${region}.amazonaws.com/${client}
             - { region: !Ref "AWS::Region",  client: !Ref UserPool}
             
-      SupportedLoginProviders: 
-        
-        graph.facebook.com: !Ref facebookAppId
-        
-        
-        accounts.google.com: !Ref googleClientId
-        
-        
-      
       AllowUnauthenticatedIdentities: !Ref allowUnauthenticatedIdentities
        
        
@@ -780,15 +759,9 @@ Outputs :
   AppClientSecret:
     Value: !GetAtt UserPoolClientInputs.appSecret
   
-  
-  GoogleWebClient:
-    Value: !Ref googleClientId
    
    
   
-  
-  FacebookWebClient:
-    Value: !Ref facebookAppId
    
    
   

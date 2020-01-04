@@ -1,15 +1,8 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-  useMemo
-} from 'react'
+import React, { useContext, useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import {
   Grid,
-  Link,
   Container,
   CssBaseline,
   Paper,
@@ -18,14 +11,11 @@ import {
 
 import logo from '../static/ra2.png'
 import HostedUiSignIn from '../auth/components/HostedUiSignIn'
+import EmailSignIn from '../auth/components/EmailSignIn'
 import GoogleSignIn from '../auth/components/GoogleSignIn'
 import FacebookSignIn from '../auth/components/FacebookSignIn'
 import Button from '@material-ui/core/Button'
-import Snackbar from '../common/Snackbar'
 import { AuthContext } from '../auth/auth-context'
-import AuthButton from '../auth/components/AuthButton'
-import AuthEmailField from '../auth/components/AuthEmailField'
-import AuthPasswordField from '../auth/components/AuthPasswordField'
 import AppImage from './AppImage'
 import Layout from './AppHomeLayout'
 
@@ -50,15 +40,8 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       alignSelf: 'center'
     },
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(3)
-    },
     link: {
       margin: theme.spacing(3, 0, 2)
-    },
-    links: {
-      padding: '0px 5px'
     },
     logo: {
       height: '48px',
@@ -71,37 +54,12 @@ export interface HomeProps {}
 
 const Home: React.SFC<HomeProps> = () => {
   const authContext = useContext(AuthContext)
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [disable, setDisable] = useState<boolean>(true)
-  const [error, setError] = useState<string>('')
   const history = useHistory()
-
-  useEffect(() => {
-    setDisable(!(email && password))
-  }, [email, password])
-
-  const submitHandler = async (e: any) => {
-    e.preventDefault()
-    try {
-      const signin = await authContext.signIn(email, password)
-      console.log(signin)
-      //history.push('/')
-    } catch (err) {
-      console.error('err', err)
-      setError(err)
-    }
-  }
-
-  const setErrorMsg = useCallback((message: string) => {
-    setError(message)
-  }, [])
-
   const classes = useStyles(useTheme())
 
   const appImage = useMemo(() => <AppImage />, [])
 
-  const login = authContext.isAuth ? (
+  const dashLink = authContext.isAuth ? (
     <Button
       color='primary'
       variant='contained'
@@ -109,31 +67,7 @@ const Home: React.SFC<HomeProps> = () => {
       className={classes.link}>
       Dashboard
     </Button>
-  ) : (
-    <form className={classes.form} onSubmit={e => submitHandler(e)} noValidate>
-      <AuthEmailField setEmail={email => setEmail(email)} />
-      <AuthPasswordField setPassword={password => setPassword(password)} />
-      <AuthButton disabled={disable}>Sign In</AuthButton>
-      <Grid container>
-        <Grid item xs className={classes.links}>
-          <Link
-            href='#'
-            onClick={() => history.push('/auth/resetpassword')}
-            variant='body2'>
-            Forgot password?
-          </Link>
-        </Grid>
-        <Grid item className={classes.links}>
-          <Link
-            href='#'
-            onClick={() => history.push('/auth/signup')}
-            variant='body2'>
-            Sign Up
-          </Link>
-        </Grid>
-      </Grid>
-    </form>
-  )
+  ) : null
 
   return (
     <Grid container component='main' className={classes.root}>
@@ -149,15 +83,11 @@ const Home: React.SFC<HomeProps> = () => {
               <Typography variant='subtitle2'>
                 SaaS Starter Kit with React AWS Amplify
               </Typography>
+              {dashLink}
+              <EmailSignIn />
               <GoogleSignIn />
               <FacebookSignIn />
               <HostedUiSignIn />
-              {login}
-              <Snackbar
-                variant='error'
-                message={error}
-                setMessage={message => setErrorMsg(message)}
-              />
             </div>
           </Container>
         </Layout>

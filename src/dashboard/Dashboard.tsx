@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import {
@@ -117,6 +117,10 @@ const Dashboard: React.SFC<DashboardProps> = () => {
   const authContext = useContext(AuthContext)
   const [open, setOpen] = React.useState(true)
   const history = useHistory()
+
+  useEffect(() => {
+    document.title = 'RA2 Dashboard'
+  }, [])
 
   const signOutHandler = () => {
     authContext

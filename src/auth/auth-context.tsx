@@ -1,13 +1,14 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth/lib/types'
-import { Auth } from 'aws-amplify'
+import { Auth, Hub } from 'aws-amplify'
+import { useHistory } from 'react-router-dom'
 
 export interface AuthContextProps {
   isAuth: boolean
   provider: string
   email: string
   user: any
-  googleSignIn(): Promise<any>
+  federatedSignIn(provider: string): void
   signUp(username: string, password: string): Promise<any>
   confirmSignUp(userEmail: string, code: string): Promise<any>
   resendSignUp(userEmail: string): Promise<any>
@@ -26,7 +27,7 @@ export const AuthContext = React.createContext<AuthContextProps>({
   provider: '',
   email: '',
   user: null,
-  googleSignIn: () => new Promise(reject => reject(0)),
+  federatedSignIn: (provider: string) => {},
   signUp: () => new Promise(reject => reject(0)),
   confirmSignUp: () => new Promise(reject => reject(0)),
   resendSignUp: () => new Promise(reject => reject(0)),
@@ -48,6 +49,8 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   const [email, setEmail] = useState<string>('')
   const [user, setUser] = useState<any>({})
 
+  const history = useHistory()
+
   useEffect(() => {
     console.log('checking for authenticated user...')
     Auth.currentAuthenticatedUser()
@@ -61,18 +64,43 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       })
   }, [])
 
-  const googleSignIn = () => {
-    console.log('sign in with google')
-    return new Promise(async (resolve, reject) => {
-      Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })
-        .then(data => {
-          resolve(data)
-        })
-        .catch(err => {
-          reject(err)
-        })
+  useEffect(() => {
+    Hub.listen('auth', data => {
+      const { payload } = data
+      console.log('A new auth event has happened: ', data)
+
+      if (payload.event === 'signIn') {
+        console.log('a user has signed in!')
+        setUser(payload.data)
+        setEmail(payload.data.attributes.email)
+        setIsAuth(true)
+        history.push('/')
+      }
+
+      if (payload.event === 'signOut') {
+        console.log('a user has signed out!')
+        history.push('/')
+      }
     })
-  }
+  }, [])
+
+  const federatedSignIn = useCallback((provider: string) => {
+    switch (provider) {
+      case 'hosted':
+        Auth.federatedSignIn()
+        break
+      case 'facebook':
+        Auth.federatedSignIn({
+          provider: CognitoHostedUIIdentityProvider.Facebook
+        })
+        break
+      case 'google':
+        Auth.federatedSignIn({
+          provider: CognitoHostedUIIdentityProvider.Google
+        })
+        break
+    }
+  }, [])
 
   const signUp = useCallback((userEmail: string, password: string) => {
     return new Promise(async (resolve, reject) => {
@@ -126,9 +154,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           username: userEmail,
           password: password
         })
-        setEmail(userEmail)
-        setUser(user)
-        setIsAuth(true)
         resolve(user)
       } catch (err) {
         const message = err.message || 'An internal error occurred.'
@@ -204,7 +229,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         provider: provider,
         email: email,
         user: user,
-        googleSignIn: googleSignIn,
+        federatedSignIn: federatedSignIn,
         signUp: signUp,
         confirmSignUp: confirmSignUp,
         resendSignUp: resendSignUp,

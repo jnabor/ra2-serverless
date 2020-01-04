@@ -11,10 +11,7 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
   const authContext = useContext(AuthContext)
 
   const signInHandler = () => {
-    authContext
-      .googleSignIn()
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
+    authContext.federatedSignIn('google')
   }
 
   const classes = useStyles()

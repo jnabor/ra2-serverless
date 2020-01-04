@@ -1,33 +1,28 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 
-import { AuthContext } from '../auth-context'
-import cognitoLogo from '../../static/cognito.png'
+import EmailIcon from '@material-ui/icons/Email'
 import Button from '@material-ui/core/Button'
 import { useStyles } from './styles'
 
 export interface HostedUiSignInProps {}
 
 const HostedUiSignIn: React.SFC<HostedUiSignInProps> = () => {
-  const authContext = useContext(AuthContext)
-
-  const signInHandler = () => {
-    authContext.federatedSignIn('hosted')
-  }
-
+  const history = useHistory()
   const classes = useStyles()
 
   return (
     <Button
       fullWidth
       variant='contained'
-      onClick={() => signInHandler()}
+      onClick={() => history.push('/auth')}
       size='large'
       className={classes.google}>
       <div className={classes.container}>
         <div className={classes.fsignLogo}>
-          <img style={{ height: '22px' }} src={cognitoLogo} />
+          <EmailIcon />
         </div>
-        <div className={classes.fsignLabel}>Sign In with Hosted UI</div>
+        <div className={classes.fsignLabel}>Sign In with Email</div>
       </div>
     </Button>
   )

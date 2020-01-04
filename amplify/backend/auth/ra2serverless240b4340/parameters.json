@@ -1,5 +1,5 @@
 {
-    "identityPoolName": "ra2serverless240b4340_identitypool_240b4340",
+    "identityPoolName": "ra2serverless240b4340_identitypool_34543397",
     "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "ra2ser240b4340",
     "userPoolName": "ra2serverless240b4340_userpool_240b4340",
@@ -12,7 +12,7 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your RA2 Verification Code",
+    "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
@@ -44,7 +44,7 @@
             "Arn"
         ]
     },
-    "useDefault": "manual",
+    "useDefault": "defaultSocial",
     "hostedUI": true,
     "usernameAttributes": [
         "email"
@@ -62,12 +62,7 @@
     },
     "permissions": [],
     "dependsOn": [],
-    "thirdPartyAuth": true,
-    "authProviders": [
-        "graph.facebook.com",
-        "accounts.google.com"
-    ],
     "userPoolGroups": false,
     "adminQueries": false,
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\",\"https://ra2-serverless-dev.auth.ap-southeast-1.amazoncognito.com/\"],\"LogoutURLs\":[\"https://ra2-dev.sonabstudios.com/\",\"http://localhost:3000/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://ra2-dev.sonabstudios.com/\"],\"LogoutURLs\":[\"https://ra2-dev.sonabstudios.com/\"]}"
 }
