@@ -30,7 +30,7 @@ const AuthSignIn: React.SFC<AuthSignInProps> = () => {
     authContext
       .signIn(email, password)
       .then(data => {
-        console.log('sign in success!', data)
+        console.log('sign in success!')
       })
       .catch(err => {
         console.error('error:', err)

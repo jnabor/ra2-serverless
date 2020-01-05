@@ -55,6 +55,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     console.log('checking for authenticated user...')
     Auth.currentAuthenticatedUser()
       .then(data => {
+        console.log('current', data)
         setUser(data)
         setEmail(data.attributes.email)
         setIsAuth(true)
@@ -68,6 +69,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     Hub.listen('auth', data => {
       const { payload } = data
       console.log('A new auth event has happened: ', data)
+      console.log('event:', payload.event)
 
       if (payload.event === 'signIn') {
         console.log('a user has signed in!')
@@ -79,6 +81,10 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
 
       if (payload.event === 'signOut') {
         console.log('a user has signed out!')
+        setUser(null)
+        setEmail('')
+        setIsAuth(false)
+        setProvider('')
         history.push('/')
       }
     })
@@ -150,11 +156,12 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     console.log('sign in', userEmail, password)
     return new Promise(async (resolve, reject) => {
       try {
-        const { user } = await Auth.signIn({
+        const data = await Auth.signIn({
           username: userEmail,
           password: password
         })
-        resolve(user)
+        console.log(data)
+        resolve(data)
       } catch (err) {
         const message = err.message || 'An internal error occurred.'
         reject(message)
@@ -181,8 +188,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     return new Promise((resolve, reject) => {
       Auth.signOut()
         .then(data => {
-          setUser(null)
-          setIsAuth(false)
           resolve(data)
         })
         .catch(err => {

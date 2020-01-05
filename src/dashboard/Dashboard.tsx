@@ -126,7 +126,6 @@ const Dashboard: React.SFC<DashboardProps> = () => {
     authContext
       .signOut()
       .then(data => {
-        console.log(data)
         history.push('/')
       })
       .catch(err => {
