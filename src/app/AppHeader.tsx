@@ -44,7 +44,7 @@ const Header: React.SFC<HeaderProps> = () => {
       })
   }
 
-  let authLink = authContext.isAuth ? (
+  let authLink = authContext.isAuthenticated() ? (
     <Button
       color='primary'
       onClick={() => {

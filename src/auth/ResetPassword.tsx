@@ -27,8 +27,8 @@ const AuthReset: React.SFC<AuthResetProps> = () => {
     authContext
       .resetPassword(email)
       .then(data => {
-        console.log(data)
-        history.push('/auth/resetpassword/confirm')
+        console.log('response', data, email)
+        history.push('/auth/resetpassword/confirm', email)
       })
       .catch(err => {
         console.error('error:', err)

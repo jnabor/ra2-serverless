@@ -30,7 +30,7 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
           <img style={{ height: '22px' }} src={facebookLogo} />
         </div>
         <div className={classes.fsignLabel}>
-          {authContext.isAuth
+          {authContext.isAuthenticated()
             ? 'Signed In with Facebook'
             : 'Sign In with Facebook'}
         </div>

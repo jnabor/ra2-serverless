@@ -59,7 +59,7 @@ const Home: React.SFC<HomeProps> = () => {
 
   const appImage = useMemo(() => <AppImage />, [])
 
-  const dashLink = authContext.isAuth ? (
+  const dashLink = authContext.isAuthenticated() ? (
     <Button
       color='primary'
       variant='contained'

@@ -11,15 +11,18 @@ import AuthButton from './components/AuthButton'
 import AuthLayout from './components/AuthLayout'
 import { useStyles } from './components/styles'
 
-export interface AuthConfirmSignUpProps {}
+export interface AuthConfirmSignUpProps {
+  location: any
+}
 
-const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
+const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = props => {
   const authContext = useContext(AuthContext)
   const [code, setCode] = useState<string>('')
   const [disable, setDisable] = useState<boolean>(true)
   const [error, setError] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const history = useHistory()
+  const email = props.location.state
 
   useEffect(() => {
     setDisable(!code)
@@ -28,7 +31,7 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
   const submitHandler = (e: any) => {
     e.preventDefault()
     authContext
-      .confirmSignUp(authContext.email, code)
+      .confirmSignUp(email, code)
       .then(data => {
         console.log(data)
         history.push('/')
@@ -41,7 +44,7 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = () => {
 
   const resendHandler = () => {
     authContext
-      .resendSignUp(authContext.email)
+      .resendSignUp(email)
       .then(data => {
         setMessage('Code resent to your email.')
       })

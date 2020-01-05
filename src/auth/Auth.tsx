@@ -16,15 +16,15 @@ const Auth: React.SFC<AuthProps> = () => {
   const history = useHistory()
 
   useEffect(() => {
-    console.log(authContext.isAuth)
-    if (authContext.isAuth) {
+    console.log('authenticated?', authContext.isAuthenticated())
+    if (authContext.isAuthenticated()) {
       history.push('/')
     }
   }, [])
 
-  authContext.isAuth && history.push('/')
+  authContext.isAuthenticated() && history.push('/')
 
-  const routes = authContext.isAuth ? null : (
+  const routes = authContext.isAuthenticated() ? null : (
     <Switch>
       <Route exact path='/auth' component={SignIn} />
       <Route exact path='/auth/signup' component={SignUp} />

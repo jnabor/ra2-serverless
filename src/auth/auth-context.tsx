@@ -4,10 +4,8 @@ import { Auth, Hub } from 'aws-amplify'
 import { useHistory } from 'react-router-dom'
 
 export interface AuthContextProps {
-  isAuth: boolean
-  provider: string
-  email: string
   user: any
+  isAuthenticated(): boolean
   federatedSignIn(provider: string): void
   signUp(username: string, password: string): Promise<any>
   confirmSignUp(userEmail: string, code: string): Promise<any>
@@ -23,10 +21,8 @@ export interface AuthContextProps {
 }
 
 export const AuthContext = React.createContext<AuthContextProps>({
-  isAuth: false,
-  provider: '',
-  email: '',
   user: null,
+  isAuthenticated: () => false,
   federatedSignIn: (provider: string) => {},
   signUp: () => new Promise(reject => reject(0)),
   confirmSignUp: () => new Promise(reject => reject(0)),
@@ -44,10 +40,7 @@ export interface AuthContextProviderProps {
 const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   children
 }) => {
-  const [isAuth, setIsAuth] = useState<boolean>(false)
-  const [provider, setProvider] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [user, setUser] = useState<any>({})
+  const [user, setUser] = useState<any>(null)
 
   const history = useHistory()
 
@@ -57,8 +50,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       .then(data => {
         console.log('current', data)
         setUser(data)
-        setEmail(data.attributes.email)
-        setIsAuth(true)
       })
       .catch(err => {
         console.log('no current authenticated user')
@@ -74,21 +65,18 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       if (payload.event === 'signIn') {
         console.log('a user has signed in!')
         setUser(payload.data)
-        setEmail(payload.data.attributes.email)
-        setIsAuth(true)
         history.push('/')
       }
 
       if (payload.event === 'signOut') {
         console.log('a user has signed out!')
         setUser(null)
-        setEmail('')
-        setIsAuth(false)
-        setProvider('')
         history.push('/')
       }
     })
   }, [])
+
+  const isAuthenticated = (): boolean => user !== null
 
   const federatedSignIn = useCallback((provider: string) => {
     switch (provider) {
@@ -117,7 +105,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         })
         console.log(user)
         setUser(user)
-        setEmail(userEmail)
         resolve(user)
       } catch (err) {
         console.log(err)
@@ -202,7 +189,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     return new Promise((resolve, reject) => {
       Auth.forgotPassword(userEmail)
         .then(data => {
-          setEmail(userEmail)
           resolve(data)
         })
         .catch(err => {
@@ -230,10 +216,8 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   return (
     <AuthContext.Provider
       value={{
-        isAuth: isAuth,
-        provider: provider,
-        email: email,
         user: user,
+        isAuthenticated: isAuthenticated,
         federatedSignIn: federatedSignIn,
         signUp: signUp,
         confirmSignUp: confirmSignUp,

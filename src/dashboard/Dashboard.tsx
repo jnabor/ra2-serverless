@@ -133,7 +133,7 @@ const Dashboard: React.SFC<DashboardProps> = () => {
       })
   }
 
-  let authLink = authContext.isAuth ? (
+  let authLink = authContext.isAuthenticated() ? (
     <Button color='inherit' onClick={() => signOutHandler()}>
       Sign Out
     </Button>
