@@ -104,7 +104,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           password: password
         })
         console.log(user)
-        setUser(user)
         resolve(user)
       } catch (err) {
         console.log(err)
