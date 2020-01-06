@@ -6,7 +6,10 @@ import * as serviceWorker from './serviceWorker'
 import AuthContextProvider from './auth/auth-context'
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
-Amplify.configure(config)
+
+let AwsConfig = JSON.parse(JSON.stringify(config))
+AwsConfig.oauth.domain = 'ra2-dev-signin.sonabstudios.com'
+Amplify.configure(AwsConfig)
 
 const app = (
   <BrowserRouter>

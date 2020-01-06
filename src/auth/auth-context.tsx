@@ -54,24 +54,23 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       .catch(err => {
         console.log('no current authenticated user')
       })
-  }, [])
 
-  useEffect(() => {
     Hub.listen('auth', data => {
       const { payload } = data
       console.log('A new auth event has happened: ', data)
       console.log('event:', payload.event)
 
-      if (payload.event === 'signIn') {
-        console.log('a user has signed in!')
-        setUser(payload.data)
-        history.push('/')
-      }
-
-      if (payload.event === 'signOut') {
-        console.log('a user has signed out!')
-        setUser(null)
-        history.push('/')
+      switch (payload.event) {
+        case 'signIn':
+          console.log('a user has signed in!')
+          setUser(payload.data)
+          history.push('/')
+          break
+        case 'signOut':
+          console.log('a user has signed out!')
+          setUser(null)
+          history.push('/')
+          break
       }
     })
   }, [])
