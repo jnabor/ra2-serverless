@@ -1,68 +1,47 @@
 {
-    "identityPoolName": "ra2serverless240b4340_identitypool_34543397",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "ra2ser240b4340",
-    "userPoolName": "ra2serverless240b4340_userpool_240b4340",
-    "autoVerifiedAttributes": [
-        "email"
-    ],
-    "mfaConfiguration": "OFF",
-    "mfaTypes": [
-        "SMS Text Message"
-    ],
-    "smsAuthenticationMessage": "Your authentication code is {####}",
-    "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": false,
-    "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [],
-    "requiredAttributes": [
-        "email"
-    ],
-    "userpoolClientGenerateSecret": true,
-    "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [
-        "email"
-    ],
-    "userpoolClientReadAttributes": [
-        "email"
-    ],
-    "userpoolClientLambdaRole": "ra2ser240b4340_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
-    "resourceName": "ra2serverless240b4340",
-    "authSelections": "identityPoolAndUserPool",
-    "authRoleArn": {
-        "Fn::GetAtt": [
-            "AuthRole",
-            "Arn"
-        ]
-    },
-    "unauthRoleArn": {
-        "Fn::GetAtt": [
-            "UnauthRole",
-            "Arn"
-        ]
-    },
-    "useDefault": "defaultSocial",
-    "hostedUI": true,
-    "usernameAttributes": [
-        "email"
-    ],
-    "triggers": "{}",
-    "hostedUIDomainName": "ra2-serverless",
-    "authProvidersUserPool": [
-        "Facebook",
-        "Google"
-    ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "userPoolGroupList": [],
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
-    "dependsOn": [],
-    "userPoolGroups": false,
-    "adminQueries": false,
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://ra2-dev.sonabstudios.com/\"],\"LogoutURLs\":[\"https://ra2-dev.sonabstudios.com/\"]}"
+  "identityPoolName": "ra2serverless240b4340_identitypool_34543397",
+  "allowUnauthenticatedIdentities": false,
+  "resourceNameTruncated": "ra2ser240b4340",
+  "userPoolName": "ra2serverless240b4340_userpool_240b4340",
+  "autoVerifiedAttributes": ["email"],
+  "mfaConfiguration": "OFF",
+  "mfaTypes": ["SMS Text Message"],
+  "smsAuthenticationMessage": "Your authentication code is {####}",
+  "smsVerificationMessage": "Your verification code is {####}",
+  "emailVerificationSubject": "Your verification code",
+  "emailVerificationMessage": "Your verification code is {####}",
+  "defaultPasswordPolicy": false,
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [],
+  "requiredAttributes": ["email"],
+  "userpoolClientGenerateSecret": true,
+  "userpoolClientRefreshTokenValidity": 30,
+  "userpoolClientWriteAttributes": ["email"],
+  "userpoolClientReadAttributes": ["email"],
+  "userpoolClientLambdaRole": "ra2ser240b4340_userpoolclient_lambda_role",
+  "userpoolClientSetAttributes": false,
+  "resourceName": "ra2serverless240b4340",
+  "authSelections": "identityPoolAndUserPool",
+  "authRoleArn": {
+    "Fn::GetAtt": ["AuthRole", "Arn"]
+  },
+  "unauthRoleArn": {
+    "Fn::GetAtt": ["UnauthRole", "Arn"]
+  },
+  "useDefault": "defaultSocial",
+  "hostedUI": true,
+  "usernameAttributes": ["email"],
+  "triggers": "{}",
+  "hostedUIDomainName": "ra2-serverless",
+  "authProvidersUserPool": ["Facebook", "Google"],
+  "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+  "userPoolGroupList": [],
+  "parentStack": {
+    "Ref": "AWS::StackId"
+  },
+  "permissions": [],
+  "dependsOn": [],
+  "userPoolGroups": false,
+  "adminQueries": false,
+  "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\", \"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://ra2-dev.sonabstudios.com/\"],\"LogoutURLs\":[\"https://ra2-dev.sonabstudios.com/\"]}"
 }
