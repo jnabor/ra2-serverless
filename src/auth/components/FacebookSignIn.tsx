@@ -26,14 +26,16 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
       size='large'
       className={classes.google}>
       <div className={classes.container}>
-        <div className={classes.fsignLogo}>
-          <img style={{ height: '22px' }} src={facebookLogo} />
-        </div>
+        <div className={classes.spacer} />
         <div className={classes.fsignLabel}>
+          <div className={classes.logo}>
+            <img style={{ height: '22px' }} src={facebookLogo} />
+          </div>
           {authContext.isAuthenticated()
             ? 'Sign Out Facebook'
             : 'Sign In Facebook'}
         </div>
+        <div className={classes.spacer} />
       </div>
     </Button>
   )

@@ -26,12 +26,14 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
       size='large'
       className={classes.google}>
       <div className={classes.container}>
-        <div className={classes.fsignLogo}>
-          <GoogleIcon />
-        </div>
+        <div className={classes.spacer} />
         <div className={classes.fsignLabel}>
+          <div className={classes.logo}>
+            <GoogleIcon />
+          </div>
           {authContext.isAuthenticated() ? 'Sign Out Google' : 'Sign In Google'}
         </div>
+        <div className={classes.spacer} />
       </div>
     </Button>
   )

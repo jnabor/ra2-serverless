@@ -41,19 +41,21 @@ export const useStyles = makeStyles((theme: Theme = useTheme()) =>
       width: '100%',
       gridTemplateColumns: 'repeat(12, 2fr)'
     },
-    fsignLogo: {
+    spacer: {
+      display: 'flex',
+      gridColumnEnd: 'span 2'
+    },
+    logo: {
       height: '100%',
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gridColumnEnd: 'span 2'
+      marginRight: '10px'
     },
     fsignLabel: {
       height: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'left',
-      gridColumnEnd: 'span 10',
+      gridColumnEnd: 'span 8',
       textTransform: 'capitalize'
     }
   })
