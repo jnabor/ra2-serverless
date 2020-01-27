@@ -16,12 +16,13 @@ password: 'S0nabStudi0s#dev' <br />
 
 ### Auth module
 
-- [ ] signin with google
-- [ ] signin with facebook
+- [x] signin with google
+- [x] signin with facebook
 - [x] signin with email
   - [x] signup with email
   - [x] signup confirmation
   - [x] reset password
+- [x] aws hosted sign in
 - [x] signout
 
 ### User module
