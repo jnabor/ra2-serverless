@@ -43,5 +43,5 @@
   "dependsOn": [],
   "userPoolGroups": false,
   "adminQueries": false,
-  "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\", \"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://ra2-dev.sonabstudios.com/\"],\"LogoutURLs\":[\"https://ra2-dev.sonabstudios.com/\"]}"
+  "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://ra2-dev.sonabstudios.com/\"],\"LogoutURLs\":[\"https://ra2-dev.sonabstudios.com/\"]}"
 }
