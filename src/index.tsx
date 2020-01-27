@@ -9,6 +9,7 @@ import config from './aws-exports'
 
 let AwsConfig = JSON.parse(JSON.stringify(config))
 AwsConfig.oauth.domain = 'ra2-dev-signin.sonabstudios.com'
+AwsConfig.oauth.responseType = 'token'
 Amplify.configure(AwsConfig)
 
 const app = (

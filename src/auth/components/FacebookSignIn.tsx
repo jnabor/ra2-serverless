@@ -33,9 +33,8 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
           </div>
           {authContext.isAuthenticated()
             ? 'Sign Out Facebook'
-            : 'Sign In Facebook'}
+            : 'Sign in with Facebook'}
         </div>
-        <div className={classes.spacer} />
       </div>
     </Button>
   )

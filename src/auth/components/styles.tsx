@@ -55,8 +55,8 @@ export const useStyles = makeStyles((theme: Theme = useTheme()) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'left',
-      gridColumnEnd: 'span 8',
-      textTransform: 'capitalize'
+      gridColumnEnd: 'span 10',
+      textTransform: 'none'
     }
   })
 )

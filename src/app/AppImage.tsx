@@ -18,7 +18,7 @@ export interface RandomImageProps {}
 
 const RandomImage: React.SFC<RandomImageProps> = () => {
   const classes = useStyles()
-  return <Grid item xs={false} sm={4} md={7} className={classes.image} />
+  return <Grid item xs={false} sm={4} md={6} className={classes.image} />
 }
 
 export default RandomImage

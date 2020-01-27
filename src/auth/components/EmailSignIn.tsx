@@ -24,9 +24,8 @@ const HostedUiSignIn: React.SFC<HostedUiSignInProps> = () => {
           <div className={classes.logo}>
             <EmailIcon />
           </div>
-          Sign In Email
+          Sign in with Email
         </div>
-        <div className={classes.spacer} />
       </div>
     </Button>
   )

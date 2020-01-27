@@ -4,6 +4,7 @@ import { AuthContext } from '../auth-context'
 import Button from '@material-ui/core/Button'
 import { useStyles } from './styles'
 import GoogleIcon from './GoogleIcon'
+import Box from '@material-ui/core/Box'
 
 export interface GoogleSignInProps {}
 
@@ -31,9 +32,10 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
           <div className={classes.logo}>
             <GoogleIcon />
           </div>
-          {authContext.isAuthenticated() ? 'Sign Out Google' : 'Sign In Google'}
+          {authContext.isAuthenticated()
+            ? 'Sign Out Google'
+            : 'Sign in with Google'}
         </div>
-        <div className={classes.spacer} />
       </div>
     </Button>
   )

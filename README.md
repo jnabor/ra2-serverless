@@ -4,7 +4,7 @@
 
 ### SaaS Starter Kit with React AWS Amplify
 
-#### see live demo @ https://master.d2jrlj03puhlnd.amplifyapp.com/
+#### see live demo @ https://ra2-dev.sonabstudios.com/
 
 test account: <br />
 email: 'dev@sonabstudios.com' <br />
