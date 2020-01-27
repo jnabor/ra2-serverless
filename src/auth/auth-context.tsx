@@ -66,13 +66,13 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         case 'signIn':
           console.log('a user has signed in!')
           setUser(payload.data)
-          Auth.currentUserInfo()
-            .then(data => {
-              console.log('current user info', data)
-            })
-            .catch(err => {
-              console.log('error getting current user info')
-            })
+          //Auth.currentUserInfo()
+          //  .then(data => {
+          //    console.log('current user info', data)
+          //  })
+          //  .catch(err => {
+          //    console.log('error getting current user info')
+          //  })
           history.push('/')
           break
         case 'signOut':
