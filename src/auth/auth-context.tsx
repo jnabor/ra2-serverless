@@ -54,7 +54,9 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       .catch(err => {
         console.log('no current authenticated user')
       })
+  }, [])
 
+  useEffect(() => {
     Hub.listen('auth', data => {
       const { payload } = data
       console.log('A new auth event has happened: ', data)
@@ -64,6 +66,13 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         case 'signIn':
           console.log('a user has signed in!')
           setUser(payload.data)
+          Auth.currentUserInfo()
+            .then(data => {
+              console.log('current user info', data)
+            })
+            .catch(err => {
+              console.log('error getting current user info')
+            })
           history.push('/')
           break
         case 'signOut':
