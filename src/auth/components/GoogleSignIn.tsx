@@ -30,9 +30,7 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
           <GoogleIcon />
         </div>
         <div className={classes.fsignLabel}>
-          {authContext.isAuthenticated()
-            ? 'Signed In with Google'
-            : 'Sign In with Google'}
+          {authContext.isAuthenticated() ? 'Sign Out Google' : 'Sign In Google'}
         </div>
       </div>
     </Button>

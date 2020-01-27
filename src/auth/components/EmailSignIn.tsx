@@ -22,7 +22,7 @@ const HostedUiSignIn: React.SFC<HostedUiSignInProps> = () => {
         <div className={classes.fsignLogo}>
           <EmailIcon />
         </div>
-        <div className={classes.fsignLabel}>Sign In with Email</div>
+        <div className={classes.fsignLabel}>Sign In Email</div>
       </div>
     </Button>
   )

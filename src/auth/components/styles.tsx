@@ -46,14 +46,15 @@ export const useStyles = makeStyles((theme: Theme = useTheme()) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      gridColumnEnd: 'span 3'
+      gridColumnEnd: 'span 2'
     },
     fsignLabel: {
       height: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'left',
-      gridColumnEnd: 'span 9'
+      gridColumnEnd: 'span 10',
+      textTransform: 'capitalize'
     }
   })
 )

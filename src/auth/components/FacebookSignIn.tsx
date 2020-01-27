@@ -31,8 +31,8 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
         </div>
         <div className={classes.fsignLabel}>
           {authContext.isAuthenticated()
-            ? 'Signed In with Facebook'
-            : 'Sign In with Facebook'}
+            ? 'Sign Out Facebook'
+            : 'Sign In Facebook'}
         </div>
       </div>
     </Button>
