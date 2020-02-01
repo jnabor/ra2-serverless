@@ -1,5 +1,11 @@
 node_modules
 build
+build/
+dist/
+node_modules/
+
+#keys, ids
+.env
 
 #amplify
 src/aws-exports.js
@@ -8,9 +14,6 @@ amplify/.config/local-*
 amplify/mock-data
 amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
-build/
-dist/
-node_modules/
 awsconfiguration.json
 amplifyconfiguration.json
 amplify-gradle-config.json

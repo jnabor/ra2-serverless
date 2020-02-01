@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 export interface AuthContextProps {
   user: any
+  provider: string
   isAuthenticated(): boolean
   federatedSignIn(provider: string): void
   signUp(username: string, password: string): Promise<any>
@@ -22,6 +23,7 @@ export interface AuthContextProps {
 
 export const AuthContext = React.createContext<AuthContextProps>({
   user: null,
+  provider: '',
   isAuthenticated: () => false,
   federatedSignIn: (provider: string) => {},
   signUp: () => new Promise(reject => reject(0)),
@@ -41,18 +43,12 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   children
 }) => {
   const [user, setUser] = useState<any>(null)
+  const [provider, setProvider] = useState<string>('')
   const history = useHistory()
 
   useEffect(() => {
     console.log('checking for authenticated user...')
-    Auth.currentAuthenticatedUser()
-      .then(data => {
-        console.log('current', data)
-        setUser(data)
-      })
-      .catch(err => {
-        console.log('no current authenticated user')
-      })
+    getUserData()
   }, [])
 
   useEffect(() => {
@@ -64,8 +60,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       switch (payload.event) {
         case 'signIn':
           console.log('a user has signed in!')
-          setUser(payload.data)
-          console.log('user data', payload.data)
+          getUserData()
           history.push('/')
           break
         case 'signOut':
@@ -76,6 +71,17 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       }
     })
   }, [])
+
+  const getUserData = () => {
+    Auth.currentAuthenticatedUser()
+      .then(data => {
+        console.log('current', data)
+        setUser(data)
+      })
+      .catch(err => {
+        console.log('no current authenticated user')
+      })
+  }
 
   const isAuthenticated = (): boolean => user !== null
 
@@ -217,6 +223,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     <AuthContext.Provider
       value={{
         user: user,
+        provider: provider,
         isAuthenticated: isAuthenticated,
         federatedSignIn: federatedSignIn,
         signUp: signUp,
