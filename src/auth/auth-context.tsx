@@ -41,7 +41,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   children
 }) => {
   const [user, setUser] = useState<any>(null)
-
   const history = useHistory()
 
   useEffect(() => {
@@ -66,13 +65,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         case 'signIn':
           console.log('a user has signed in!')
           setUser(payload.data)
-          //Auth.currentUserInfo()
-          //  .then(data => {
-          //    console.log('current user info', data)
-          //  })
-          //  .catch(err => {
-          //    console.log('error getting current user info')
-          //  })
+          console.log('user data', payload.data)
           history.push('/')
           break
         case 'signOut':

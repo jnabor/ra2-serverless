@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from 'react'
-import { Auth } from 'aws-amplify'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { AuthContext } from './auth-context'
 import Button from '@material-ui/core/Button'
 import { useStyles } from './components/styles'
 import facebookLogo from '../static/facebook.png'
-
-export interface FacebookSignInProps {}
+import { Auth } from 'aws-amplify'
 
 declare global {
   interface Window {
@@ -15,80 +13,42 @@ declare global {
   }
 }
 
+export interface FacebookSignInProps {}
+
 const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
   const authContext = useContext(AuthContext)
-
-  const signInHandler = () => {
-    authContext.federatedSignIn('facebook')
-  }
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     if (!window.FB) createScript()
+    waitForInit()
+      .then(data => setLoading(false))
+      .catch(err => {})
   }, [])
 
-  const signIn = () => {
-    const fb = window.FB
-    fb.getLoginStatus((response: any) => {
-      if (response.status === 'connected') {
-        console.log('connected', response.authResponse)
-        getAWSCredentials(response.authResponse)
-      } else {
-        console.log('logging in')
-        fb.login(
-          (response: any) => {
-            if (!response || !response.authResponse) {
-              return
-            }
-            console.log('logged in', response.authResponse)
-            getAWSCredentials(response.authResponse)
-          },
-          {
-            // the authorized scopes
-            scope: 'public_profile,email'
-          }
-        )
+  const waitForInit = () => {
+    return new Promise((res, rej) => {
+      const hasFbLoaded = () => {
+        if (window.FB) {
+          res()
+        } else {
+          setTimeout(hasFbLoaded, 300)
+        }
       }
-    })
-  }
-
-  const getAWSCredentials = (response: any) => {
-    const { accessToken, expiresIn } = response
-    const date = new Date()
-    const expires_at = expiresIn * 1000 + date.getTime()
-    if (!accessToken) {
-      return
-    }
-
-    const fb = window.FB
-    fb.api('/me', { fields: 'name,email' }, (response: any) => {
-      const user = {
-        name: response.name,
-        email: response.email
-      }
-
-      Auth.federatedSignIn(
-        'facebook',
-        { token: accessToken, expires_at },
-        user
-      ).then(credentials => {
-        console.log(credentials)
-      })
+      hasFbLoaded()
     })
   }
 
   const createScript = () => {
     // load the sdk
-    console.log('creating script')
     window.fbAsyncInit = fbAsyncInit
     const script = document.createElement('script')
     script.src = 'https://connect.facebook.net/en_US/sdk.js'
     script.async = true
-    script.onload = initFB
     document.body.appendChild(script)
   }
 
   const fbAsyncInit = () => {
-    // init the fb sdk client
     const fb = window.FB
     fb.init({
       appId: '552618845303798',
@@ -98,9 +58,45 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
     })
   }
 
-  const initFB = () => {
-    const fb = window.FB
-    console.log('FB SDK inited')
+  const statusChangeCallback = (response: any) => {
+    if (response.status === 'connected') {
+      handleResponse(response.authResponse)
+    } else {
+      handleError(response)
+    }
+  }
+
+  const checkLoginState = () => {
+    window.FB.getLoginStatus(statusChangeCallback)
+  }
+
+  const handleClick = () => {
+    window.FB.login(checkLoginState, { scope: 'public_profile,email' })
+  }
+
+  const handleError = (error: any) => {
+    alert(error)
+  }
+
+  const handleResponse = async (data: any) => {
+    const { name, email, accessToken: token, expiresIn } = data
+    const expires_at = expiresIn * 1000 + new Date().getTime()
+    const user = { name, email }
+
+    setLoading(true)
+
+    try {
+      const response = await Auth.federatedSignIn(
+        'facebook',
+        { token, expires_at },
+        user
+      )
+      setLoading(false)
+      console.log('signed in with facebook')
+    } catch (e) {
+      setLoading(false)
+      console.log('error sign in with facebook')
+    }
   }
 
   const classes = useStyles()
@@ -109,8 +105,9 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
     <Button
       fullWidth
       variant='contained'
+      disabled={loading}
       onClick={() => {
-        signIn()
+        handleClick()
       }}
       size='large'
       className={classes.google}>
@@ -120,9 +117,7 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
           <div className={classes.logo}>
             <img style={{ height: '22px' }} src={facebookLogo} />
           </div>
-          {authContext.isAuthenticated()
-            ? 'Sign Out Facebook'
-            : 'Sign in with Facebook'}
+          Sign in with Facebook
         </div>
       </div>
     </Button>
