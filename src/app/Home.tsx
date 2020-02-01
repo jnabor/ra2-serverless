@@ -14,6 +14,7 @@ import HostedUiSignIn from '../auth/components/HostedUiSignIn'
 import EmailSignIn from '../auth/components/EmailSignIn'
 import GoogleSignIn from '../auth/components/GoogleSignIn'
 import FacebookSignIn from '../auth/components/FacebookSignIn'
+import FacebookSignIn2 from '../auth/FacebookSignIn2'
 import Button from '@material-ui/core/Button'
 import { AuthContext } from '../auth/auth-context'
 import AppImage from './AppImage'
@@ -87,6 +88,7 @@ const Home: React.SFC<HomeProps> = () => {
               <EmailSignIn />
               <GoogleSignIn />
               <FacebookSignIn />
+              <FacebookSignIn2 />
               <HostedUiSignIn />
             </div>
           </Container>

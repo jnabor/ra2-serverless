@@ -4,7 +4,6 @@ import { AuthContext } from '../auth-context'
 import Button from '@material-ui/core/Button'
 import { useStyles } from './styles'
 import GoogleIcon from './GoogleIcon'
-import Box from '@material-ui/core/Box'
 
 export interface GoogleSignInProps {}
 
