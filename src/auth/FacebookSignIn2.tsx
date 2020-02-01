@@ -31,7 +31,7 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
     fb.getLoginStatus((response: any) => {
       if (response.status === 'connected') {
         console.log('connected', response.authResponse)
-        //getAWSCredentials(response.authResponse)
+        getAWSCredentials(response.authResponse)
       } else {
         console.log('logging in')
         fb.login(
@@ -39,8 +39,8 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
             if (!response || !response.authResponse) {
               return
             }
-            console.log('ogged in', response.authResponse)
-            //getAWSCredentials(response.authResponse)
+            console.log('logged in', response.authResponse)
+            getAWSCredentials(response.authResponse)
           },
           {
             // the authorized scopes
