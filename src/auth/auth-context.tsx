@@ -57,16 +57,12 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   useEffect(() => {
     Hub.listen('auth', data => {
       const { payload } = data
-      console.log('A new auth event has happened: ', data)
-
       switch (payload.event) {
         case 'signIn':
-          console.log('a user has signed in!')
           getUserData()
           history.push('/')
           break
         case 'signOut':
-          console.log(`${email} has signed out!`)
           setUser(null)
           setProvider('')
           localStorage.setItem('provider', '')
@@ -90,9 +86,10 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         console.log('email:', email)
         console.log('name:', name)
         console.log('provider:', provider)
-        setProvider(provider)
+
         setEmail(email)
         setName(name)
+        setProvider(provider)
       })
       .catch(err => {
         console.log('no current authenticated user')

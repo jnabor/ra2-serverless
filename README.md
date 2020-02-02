@@ -12,7 +12,11 @@ password: 'S0nabStudi0s#dev' <br />
 
 ![Preview](public/ci_cd_pipeline.jpg)
 
-# Features
+# Features V1.0
+
+### Lannding Page
+
+- [x] random wallpaper/images from unsplash.com. Refer to API at https://unsplash.com/developers
 
 ### Auth module
 
@@ -25,7 +29,7 @@ password: 'S0nabStudi0s#dev' <br />
 - [x] aws hosted sign in (hidden)
 - [x] signout
 
-## PLANNED FEATURES
+# Planned Features
 
 - [x] Version 1.0 : Authentication (email, google, facebook)
 - [ ] Version 1.1 : User Profiles
@@ -33,7 +37,7 @@ password: 'S0nabStudi0s#dev' <br />
 - [ ] Version 2.0 : Dynamic Themes (Light, Dark, Custom)
 - [ ] Version 3.0 : Payment Integration (Paypal)
 
-# Tech Stack
+## Tech Stack
 
 - TypeScript
 - React (+ Hooks and Router)
