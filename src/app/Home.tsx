@@ -7,7 +7,8 @@ import {
   CssBaseline,
   Paper,
   Typography,
-  Divider
+  Divider,
+  Link
 } from '@material-ui/core'
 
 import logo from '../static/ra2.png'
@@ -113,8 +114,13 @@ const Home: React.SFC<HomeProps> = () => {
               <Typography variant='h5' gutterBottom>
                 RA2™ Serverless
               </Typography>
-              <Typography variant='subtitle2'>
-                SaaS Starter Kit with React AWS Amplify
+              <Typography variant='subtitle2' gutterBottom>
+                SaaS Starter Kit with React and Amplify
+              </Typography>
+              <Typography variant='subtitle1' gutterBottom>
+                <Link href='https://github.com/sonabstudios/ra2-serverless'>
+                  Fork in GitHub
+                </Link>
               </Typography>
               {dashLink}
               {federatedSignIn}
