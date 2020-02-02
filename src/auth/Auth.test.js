@@ -37,29 +37,8 @@ describe('<SignUp />', () => {
   })
 })
 
-describe('<ConfirmSignUp />', () => {
-  const container = shallow(<ConfirmSignUp />)
-  it('should match the snapshot', () => {
-    expect(container.html()).toMatchSnapshot()
-  })
-})
-
 describe('<ConfirmSignUpEmail />', () => {
   const container = shallow(<ConfirmSignUpEmail />)
-  it('should match the snapshot', () => {
-    expect(container.html()).toMatchSnapshot()
-  })
-})
-
-describe('<ResetPassword />', () => {
-  const container = shallow(<ResetPassword />)
-  it('should match the snapshot', () => {
-    expect(container.html()).toMatchSnapshot()
-  })
-})
-
-describe('<ConfirmResetPassword />', () => {
-  const container = shallow(<ConfirmResetPassword />)
   it('should match the snapshot', () => {
     expect(container.html()).toMatchSnapshot()
   })

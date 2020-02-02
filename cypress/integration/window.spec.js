@@ -39,12 +39,6 @@ describe('The Home Page', () => {
       .eq(2)
       .contains('Facebook')
   })
-
-  it('shows hosted ui sign in', () => {
-    cy.get('button')
-      .eq(3)
-      .contains('Hosted')
-  })
 })
 
 describe('The Sign In Page', () => {
