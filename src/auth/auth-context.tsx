@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom'
 export interface AuthContextProps {
   user: any
   provider: string
+  name: string
+  email: string
   isAuthenticated(): boolean
   federatedSignIn(provider: string): void
   signUp(username: string, password: string): Promise<any>
@@ -24,6 +26,8 @@ export interface AuthContextProps {
 export const AuthContext = React.createContext<AuthContextProps>({
   user: null,
   provider: '',
+  name: '',
+  email: '',
   isAuthenticated: () => false,
   federatedSignIn: (provider: string) => {},
   signUp: () => new Promise(reject => reject(0)),
@@ -44,6 +48,8 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
 }) => {
   const [user, setUser] = useState<any>(null)
   const [provider, setProvider] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [name, setName] = useState<string>('')
   const history = useHistory()
 
   useEffect(() => {
@@ -55,7 +61,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
     Hub.listen('auth', data => {
       const { payload } = data
       console.log('A new auth event has happened: ', data)
-      console.log('event:', payload.event)
 
       switch (payload.event) {
         case 'signIn':
@@ -64,8 +69,11 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           history.push('/')
           break
         case 'signOut':
-          console.log('a user has signed out!')
+          console.log(`${email} has signed out!`)
           setUser(null)
+          setProvider('')
+          setEmail('')
+          setName('')
           history.push('/')
           break
       }
@@ -77,6 +85,13 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       .then(data => {
         console.log('current', data)
         setUser(data)
+        const email = data.email || data.attributes.email || ''
+        const name = data.name || data.attributes.email || ''
+
+        console.log('email:', email)
+        console.log('name:', name)
+        setEmail(email)
+        setName(name)
       })
       .catch(err => {
         console.log('no current authenticated user')
@@ -224,6 +239,8 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
       value={{
         user: user,
         provider: provider,
+        name: name,
+        email: email,
         isAuthenticated: isAuthenticated,
         federatedSignIn: federatedSignIn,
         signUp: signUp,

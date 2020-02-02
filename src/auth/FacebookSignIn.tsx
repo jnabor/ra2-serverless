@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
-
-import { AuthContext } from './auth-context'
+import React, { useEffect, useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { useStyles } from './components/styles'
 import facebookLogo from '../static/facebook.png'
@@ -18,7 +16,6 @@ const FACEBOOK_CLIENT_ID = process.env.REACT_APP_FACEBOOK_CLIENT_ID
 export interface FacebookSignInProps {}
 
 const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
-  const authContext = useContext(AuthContext)
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -47,13 +44,7 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
     const script = document.createElement('script')
     script.src = 'https://connect.facebook.net/en_US/sdk.js'
     script.async = true
-    script.onload = initFB
     document.body.appendChild(script)
-  }
-
-  const initFB = () => {
-    const fb = window.FB
-    console.log('FB SDK inited')
   }
 
   const fbAsyncInit = () => {

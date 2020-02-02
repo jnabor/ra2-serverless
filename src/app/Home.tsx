@@ -6,11 +6,12 @@ import {
   Container,
   CssBaseline,
   Paper,
-  Typography
+  Typography,
+  Divider
 } from '@material-ui/core'
 
 import logo from '../static/ra2.png'
-import HostedUiSignIn from '../auth/HostedUiSignIn'
+//import HostedUiSignIn from '../auth/HostedUiSignIn'
 import EmailSignIn from '../auth/EmailSignIn'
 import GoogleSignIn from '../auth/GoogleSignIn'
 import FacebookSignIn from '../auth/FacebookSignIn'
@@ -40,12 +41,20 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       alignSelf: 'center'
     },
-    link: {
-      margin: theme.spacing(3, 0, 2)
+    link1: {
+      margin: theme.spacing(3, 0, 0, 0)
+    },
+    link2: {
+      margin: theme.spacing(2, 0, 0, 0)
     },
     logo: {
       height: '48px',
       marginBottom: theme.spacing(1)
+    },
+    hr: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(1),
+      width: '100%'
     }
   })
 )
@@ -60,13 +69,37 @@ const Home: React.SFC<HomeProps> = () => {
   const appImage = useMemo(() => <AppImage />, [])
 
   const dashLink = authContext.isAuthenticated() ? (
-    <Button
-      color='primary'
-      variant='contained'
-      onClick={() => history.push('/dashboard')}
-      className={classes.link}>
-      Dashboard
-    </Button>
+    <React.Fragment>
+      <Button
+        fullWidth
+        color='secondary'
+        variant='outlined'
+        size='large'
+        onClick={() => history.push('/dashboard')}
+        className={classes.link1}>
+        Go to Dashboard
+      </Button>
+      <Button
+        fullWidth
+        color='primary'
+        variant='outlined'
+        size='large'
+        onClick={() => authContext.signOut()}
+        className={classes.link2}>
+        Sign Out
+      </Button>
+    </React.Fragment>
+  ) : null
+
+  const federatedSignIn = !authContext.isAuthenticated() ? (
+    <React.Fragment>
+      <EmailSignIn />
+      <div className={classes.hr}>
+        <Divider />
+      </div>
+      <GoogleSignIn />
+      <FacebookSignIn />
+    </React.Fragment>
   ) : null
 
   return (
@@ -84,10 +117,7 @@ const Home: React.SFC<HomeProps> = () => {
                 SaaS Starter Kit with React AWS Amplify
               </Typography>
               {dashLink}
-              <EmailSignIn />
-              <GoogleSignIn />
-              <FacebookSignIn />
-              <HostedUiSignIn />
+              {federatedSignIn}
             </div>
           </Container>
         </Layout>
