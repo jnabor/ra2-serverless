@@ -98,18 +98,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
 
   const isAuthenticated = (): boolean => user !== null
 
-  useEffect(() => {
-    Auth.currentAuthenticatedUser()
-      .then(data => {
-        setUser(data)
-        setEmail(data.attributes.email)
-        setIsAuth(true)
-      })
-      .catch(err => {
-        console.log('no current authenticated user')
-      })
-  }, [])
-
   const signUp = useCallback((userEmail: string, password: string) => {
     return new Promise(async (resolve, reject) => {
       try {
