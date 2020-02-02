@@ -8,16 +8,13 @@ node_modules/
 .env
 
 #amplify
-src/aws-exports.js
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/mock-data
 amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
-build/
-dist/
-node_modules/
-sawsconfiguration.json
+awsconfiguration.json
 amplifyconfiguration.json
 amplify-gradle-config.json
 amplifyxc.config
+src/aws-exports.js
