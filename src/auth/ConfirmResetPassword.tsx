@@ -24,7 +24,7 @@ const AuthConfirmSignUp: React.SFC<AuthConfirmSignUpProps> = props => {
   const [error, setError] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const history = useHistory()
-  const email = props.location.state
+  const email = props.location.state || ''
 
   useEffect(() => {
     setDisable(!(code && password))

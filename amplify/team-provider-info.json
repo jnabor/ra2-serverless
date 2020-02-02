@@ -1,24 +1,4 @@
 {
-    "master": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-ra2-serverless-master-221530-authRole",
-            "UnauthRoleArn": "arn:aws:iam::815621908682:role/amplify-ra2-serverless-master-221530-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::815621908682:role/amplify-ra2-serverless-master-221530-authRole",
-            "Region": "ap-southeast-1",
-            "DeploymentBucketName": "amplify-ra2-serverless-master-221530-deployment",
-            "UnauthRoleName": "amplify-ra2-serverless-master-221530-unauthRole",
-            "StackName": "amplify-ra2-serverless-master-221530",
-            "StackId": "arn:aws:cloudformation:ap-southeast-1:815621908682:stack/amplify-ra2-serverless-master-221530/02cc6990-226a-11ea-8379-0a1335ff27ae",
-            "AmplifyAppId": "d2r8aqy6myuj1d"
-        },
-        "categories": {
-            "auth": {
-                "ra2serverless240b4340": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"},{\"ProviderName\":\"Google\",\"client_id\":\"tbd\",\"client_secret\":\"tbd\"}]"
-                }
-            }
-        }
-    },
     "dev": {
         "awscloudformation": {
             "AuthRoleName": "amplify-ra2-serverless-dev-163759-authRole",
