@@ -1,7 +1,14 @@
 node_modules
 build
+build/
+dist/
+node_modules/
+
+#keys, ids
+.env
 
 #amplify
+src/aws-exports.js
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/mock-data

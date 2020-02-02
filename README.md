@@ -4,7 +4,7 @@
 
 ### SaaS Starter Kit with React AWS Amplify
 
-#### see live demo @ https://master.d2jrlj03puhlnd.amplifyapp.com/
+#### see live demo @ https://ra2-dev.sonabstudios.com/
 
 test account: <br />
 email: 'dev@sonabstudios.com' <br />
@@ -12,45 +12,37 @@ password: 'S0nabStudi0s#dev' <br />
 
 ![Preview](public/ci_cd_pipeline.jpg)
 
-# Features
+# Features V1.0
+
+### Lannding Page
+
+- [x] random wallpaper/images from unsplash.com. Refer to API at https://unsplash.com/developers
 
 ### Auth module
 
-- [ ] signin with google
-- [ ] signin with facebook
+- [x] signin with google
+- [x] signin with facebook
 - [x] signin with email
   - [x] signup with email
   - [x] signup confirmation
   - [x] reset password
+- [x] aws hosted sign in (hidden)
 - [x] signout
 
-### User module
+# Planned Features
 
-- [ ] attributes: name
-- [ ] avatar
+- [x] Version 1.0 : Authentication (email, google, facebook)
+- [ ] Version 1.1 : User Profiles
+- [ ] Version 1.2 : Multi-Factor Authentication
+- [ ] Version 2.0 : Dynamic Themes (Light, Dark, Custom)
+- [ ] Version 3.0 : Payment Integration (Paypal)
 
-### Sample Applications
-
-#### real time canvas
-
-#### chat application
-
-#### notes app
-
-#### qr code generator
-
-#### dynamic themes
-
-- [x] light
-- [ ] dark
-
-# Tech Stack
+## Tech Stack
 
 - TypeScript
-- React + Hooks
-- React Router
-- Material-UI
+- React (+ Hooks and Router)
 - AWS Amplify
+- Material-UI
 - Unit Tests with Jest + Enzyme
 - Functional Tests with Cypress
 - CI/CD with Amplify Console

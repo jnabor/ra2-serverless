@@ -9,7 +9,11 @@ const withAuthenticator = (
 ): React.SFC<withAuthenticatorProps> => {
   return () => {
     const authContext = useContext(AuthContext)
-    const page = authContext.isAuth ? <WrappedComponent /> : <AccessDenied />
+    const page = authContext.isAuthenticated() ? (
+      <WrappedComponent />
+    ) : (
+      <AccessDenied />
+    )
     return <div>{page}</div>
   }
 }

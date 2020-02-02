@@ -4,6 +4,13 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './app/App'
 import * as serviceWorker from './serviceWorker'
 import AuthContextProvider from './auth/auth-context'
+import Amplify from 'aws-amplify'
+import config from './aws-exports'
+
+let AwsConfig = JSON.parse(JSON.stringify(config))
+AwsConfig.oauth.domain = 'ra2-dev-signin.sonabstudios.com'
+AwsConfig.oauth.responseType = 'code'
+Amplify.configure(AwsConfig)
 
 const app = (
   <BrowserRouter>

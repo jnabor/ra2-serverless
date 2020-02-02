@@ -30,8 +30,7 @@ const AuthSignUp: React.SFC<AuthSignUpProps> = () => {
     authContext
       .signUp(email, password)
       .then(data => {
-        console.log(data)
-        history.push('/auth/signup/confirm')
+        history.push('/auth/signup/confirm', email)
       })
       .catch(err => {
         console.error('error:', err)

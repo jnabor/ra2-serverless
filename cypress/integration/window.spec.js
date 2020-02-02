@@ -18,8 +18,32 @@ describe('The Home Page', () => {
     cy.visit('/')
   })
 
-  it('cy.title() - get the title', () => {
-    cy.title().should('include', 'RA2 Home')
+  it('shows correct title', () => {
+    cy.title().should('include', 'RA2 Serverless')
+  })
+
+  it('shows email sign in', () => {
+    cy.get('button')
+      .eq(0)
+      .contains('Email')
+  })
+
+  it('shows google sign in', () => {
+    cy.get('button')
+      .eq(1)
+      .contains('Google')
+  })
+
+  it('shows facebook sign in', () => {
+    cy.get('button')
+      .eq(2)
+      .contains('Facebook')
+  })
+
+  it('shows hosted ui sign in', () => {
+    cy.get('button')
+      .eq(3)
+      .contains('Hosted')
   })
 })
 
@@ -28,7 +52,7 @@ describe('The Sign In Page', () => {
     cy.visit('/auth/')
   })
 
-  it('cy.title() - get the title', () => {
+  it('shows correct title', () => {
     cy.title().should('include', 'RA2 Sign In')
   })
 })
@@ -38,7 +62,7 @@ describe('The Sign Up Page', () => {
     cy.visit('/auth/signup/')
   })
 
-  it('cy.title() - get the title', () => {
+  it('shows correct title', () => {
     cy.title().should('include', 'RA2 Sign Up')
   })
 })
@@ -48,7 +72,7 @@ describe('The Confirm Sign Up Page', () => {
     cy.visit('/auth/signup/confirmemail/')
   })
 
-  it('cy.title() - get the title', () => {
+  it('shows correct title', () => {
     cy.title().should('include', 'RA2 Confirm Sign Up')
   })
 })
@@ -58,7 +82,7 @@ describe('The Reset Password Page', () => {
     cy.visit('/auth/resetpassword/')
   })
 
-  it('cy.title() - get the title', () => {
+  it('shows correct title', () => {
     cy.title().should('include', 'RA2 Reset Password')
   })
 })

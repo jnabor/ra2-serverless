@@ -29,6 +29,34 @@ export const useStyles = makeStyles((theme: Theme = useTheme()) =>
     },
     links: {
       padding: '0px 5px'
+    },
+    google: {
+      marginTop: theme.spacing(2),
+      backgroundColor: 'white',
+      fontWeight: 500,
+      color: theme.palette.grey[600]
+    },
+    container: {
+      display: 'grid',
+      width: '100%',
+      gridTemplateColumns: 'repeat(12, 2fr)'
+    },
+    spacer: {
+      display: 'flex',
+      gridColumnEnd: 'span 2'
+    },
+    logo: {
+      height: '100%',
+      display: 'flex',
+      marginRight: '10px'
+    },
+    fsignLabel: {
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'left',
+      gridColumnEnd: 'span 10',
+      textTransform: 'none'
     }
   })
 )

@@ -31,25 +31,8 @@ const Header: React.SFC<HeaderProps> = () => {
   const authContext = useContext(AuthContext)
   const history = useHistory()
 
-  const signOutHandler = () => {
-    authContext
-      .signOut()
-      .then(data => {
-        console.log(data)
-        console.log('---sign out')
-        history.push('/')
-      })
-      .catch(err => {
-        console.log('error sign out')
-      })
-  }
-
-  let authLink = authContext.isAuth ? (
-    <Button
-      color='primary'
-      onClick={() => {
-        signOutHandler()
-      }}>
+  let authLink = authContext.isAuthenticated() ? (
+    <Button color='primary' onClick={() => authContext.signOut()}>
       Sign Out
     </Button>
   ) : null
