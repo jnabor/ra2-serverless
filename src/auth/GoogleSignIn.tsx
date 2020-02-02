@@ -73,6 +73,7 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
       .then(credentials => {
         console.log(credentials)
         setLoading(false)
+        localStorage.setItem('provider', 'google')
         console.log('signed in with google')
       })
       .catch(err => {
@@ -99,7 +100,7 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
           <div className={classes.logo}>
             <GoogleIcon />
           </div>
-          Sign in with Google
+          Continue with Google
         </div>
       </div>
     </Button>

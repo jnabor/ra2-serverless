@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth/lib/types'
 import { Auth, Hub } from 'aws-amplify'
 import { useHistory } from 'react-router-dom'
 
@@ -9,7 +8,6 @@ export interface AuthContextProps {
   name: string
   email: string
   isAuthenticated(): boolean
-  federatedSignIn(provider: string): void
   signUp(username: string, password: string): Promise<any>
   confirmSignUp(userEmail: string, code: string): Promise<any>
   resendSignUp(userEmail: string): Promise<any>
@@ -29,7 +27,6 @@ export const AuthContext = React.createContext<AuthContextProps>({
   name: '',
   email: '',
   isAuthenticated: () => false,
-  federatedSignIn: (provider: string) => {},
   signUp: () => new Promise(reject => reject(0)),
   confirmSignUp: () => new Promise(reject => reject(0)),
   resendSignUp: () => new Promise(reject => reject(0)),
@@ -72,6 +69,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           console.log(`${email} has signed out!`)
           setUser(null)
           setProvider('')
+          localStorage.setItem('provider', '')
           setEmail('')
           setName('')
           history.push('/')
@@ -87,9 +85,12 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         setUser(data)
         const email = data.email || data.attributes.email || ''
         const name = data.name || data.attributes.email || ''
+        const provider = localStorage.getItem('provider') || ''
 
         console.log('email:', email)
         console.log('name:', name)
+        console.log('provider:', provider)
+        setProvider(provider)
         setEmail(email)
         setName(name)
       })
@@ -99,24 +100,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
   }
 
   const isAuthenticated = (): boolean => user !== null
-
-  const federatedSignIn = useCallback((provider: string) => {
-    switch (provider) {
-      case 'hosted':
-        Auth.federatedSignIn()
-        break
-      case 'facebook':
-        Auth.federatedSignIn({
-          provider: CognitoHostedUIIdentityProvider.Facebook
-        })
-        break
-      case 'google':
-        Auth.federatedSignIn({
-          provider: CognitoHostedUIIdentityProvider.Google
-        })
-        break
-    }
-  }, [])
 
   const signUp = useCallback((userEmail: string, password: string) => {
     return new Promise(async (resolve, reject) => {
@@ -168,6 +151,7 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
           username: userEmail,
           password: password
         })
+        localStorage.setItem('provider', 'email')
         console.log(data)
         resolve(data)
       } catch (err) {
@@ -242,7 +226,6 @@ const AuthContextProvider: React.SFC<AuthContextProviderProps> = ({
         name: name,
         email: email,
         isAuthenticated: isAuthenticated,
-        federatedSignIn: federatedSignIn,
         signUp: signUp,
         confirmSignUp: confirmSignUp,
         resendSignUp: resendSignUp,

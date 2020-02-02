@@ -22,37 +22,23 @@ password: 'S0nabStudi0s#dev' <br />
   - [x] signup with email
   - [x] signup confirmation
   - [x] reset password
-- [x] aws hosted sign in
+- [x] aws hosted sign in (hidden)
 - [x] signout
 
-### User module
+## PLANNED FEATURES
 
-- [ ] attributes: name
-- [ ] change password
-- [ ] avatar
-
-### Sample Applications
-
-#### real time canvas
-
-#### chat application
-
-#### notes app
-
-#### qr code generator
-
-#### dynamic themes
-
-- [x] light
-- [ ] dark
+- [x] Version 1.0 : Authentication (email, google, facebook)
+- [ ] Version 1.1 : User Profiles
+- [ ] Version 1.2 : Multi-Factor Authentication
+- [ ] Version 2.0 : Dynamic Themes (Light, Dark, Custom)
+- [ ] Version 3.0 : Payment Integration (Paypal)
 
 # Tech Stack
 
 - TypeScript
-- React + Hooks
-- React Router
-- Material-UI
+- React (+ Hooks and Router)
 - AWS Amplify
+- Material-UI
 - Unit Tests with Jest + Enzyme
 - Functional Tests with Cypress
 - CI/CD with Amplify Console

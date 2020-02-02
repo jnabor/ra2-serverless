@@ -86,7 +86,7 @@ const Home: React.SFC<HomeProps> = () => {
         size='large'
         onClick={() => authContext.signOut()}
         className={classes.link2}>
-        Sign Out
+        {`Sign Out ${authContext.provider}`}
       </Button>
     </React.Fragment>
   ) : null

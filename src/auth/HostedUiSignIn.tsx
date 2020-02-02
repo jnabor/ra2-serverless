@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
-
-import { AuthContext } from './auth-context'
+import { Auth } from 'aws-amplify'
 import cognitoLogo from '../static/cognito.png'
 import Button from '@material-ui/core/Button'
 import { useStyles } from './components/styles'
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth/lib/types'
 
 export interface HostedUiSignInProps {}
 
 const HostedUiSignIn: React.SFC<HostedUiSignInProps> = () => {
-  const authContext = useContext(AuthContext)
-
   const signInHandler = () => {
-    authContext.federatedSignIn('hosted')
+    Auth.federatedSignIn({
+      provider: CognitoHostedUIIdentityProvider.Facebook
+    })
   }
 
   const classes = useStyles()

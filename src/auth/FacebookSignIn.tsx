@@ -79,8 +79,6 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
     const { accessToken: token, expiresIn } = data
     const date = new Date()
     const expires_at = expiresIn * 1000 + date.getTime()
-
-    console.log('facebook login data', data)
     setLoading(true)
 
     const fb = window.FB
@@ -94,6 +92,7 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
         .then(credentials => {
           console.log(credentials)
           setLoading(false)
+          localStorage.setItem('provider', 'facebook')
           console.log('signed in with facebook')
         })
         .catch(err => {
@@ -121,7 +120,7 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
           <div className={classes.logo}>
             <img style={{ height: '22px' }} src={facebookLogo} />
           </div>
-          Sign in with Facebook
+          Continue with Facebook
         </div>
       </div>
     </Button>
