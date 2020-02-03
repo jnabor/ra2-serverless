@@ -19,13 +19,10 @@ const HostedUiSignIn: React.SFC<HostedUiSignInProps> = () => {
       size='large'
       className={classes.google}>
       <div className={classes.container}>
-        <div className={classes.spacer} />
-        <div className={classes.fsignLabel}>
-          <div className={classes.logo}>
-            <EmailIcon />
-          </div>
-          Sign in with Email
+        <div className={classes.spacer}>
+          <EmailIcon />
         </div>
+        <div className={classes.fsignLabel}>Sign in with Email</div>
       </div>
     </Button>
   )

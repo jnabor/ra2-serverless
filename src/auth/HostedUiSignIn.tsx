@@ -24,13 +24,10 @@ const HostedUiSignIn: React.SFC<HostedUiSignInProps> = () => {
       size='large'
       className={classes.google}>
       <div className={classes.container}>
-        <div className={classes.spacer} />
-        <div className={classes.fsignLabel}>
-          <div className={classes.logo}>
-            <img style={{ height: '22px' }} src={cognitoLogo} />
-          </div>
-          Sign in with Hosted UI
+        <div className={classes.spacer}>
+          <img style={{ height: '22px' }} src={cognitoLogo} />
         </div>
+        <div className={classes.fsignLabel}>Sign in with Hosted UI</div>
       </div>
     </Button>
   )

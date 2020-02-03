@@ -45,16 +45,11 @@ export const useStyles = makeStyles((theme: Theme = useTheme()) =>
       display: 'flex',
       gridColumnEnd: 'span 2'
     },
-    logo: {
-      height: '100%',
-      display: 'flex',
-      marginRight: '10px'
-    },
     fsignLabel: {
       height: '100%',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'left',
+      justifyContent: 'center',
       gridColumnEnd: 'span 10',
       textTransform: 'none'
     }

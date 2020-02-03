@@ -95,13 +95,10 @@ const GoogleSignIn: React.SFC<GoogleSignInProps> = () => {
       size='large'
       className={classes.google}>
       <div className={classes.container}>
-        <div className={classes.spacer} />
-        <div className={classes.fsignLabel}>
-          <div className={classes.logo}>
-            <GoogleIcon />
-          </div>
-          Continue with Google
+        <div className={classes.spacer}>
+          <GoogleIcon />
         </div>
+        <div className={classes.fsignLabel}>Continue with Google</div>
       </div>
     </Button>
   )

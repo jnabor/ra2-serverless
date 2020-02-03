@@ -115,13 +115,10 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
       size='large'
       className={classes.google}>
       <div className={classes.container}>
-        <div className={classes.spacer} />
-        <div className={classes.fsignLabel}>
-          <div className={classes.logo}>
-            <img style={{ height: '22px' }} src={facebookLogo} />
-          </div>
-          Continue with Facebook
+        <div className={classes.spacer}>
+          <img style={{ height: '22px' }} src={facebookLogo} />
         </div>
+        <div className={classes.fsignLabel}>Continue with Facebook</div>
       </div>
     </Button>
   )
