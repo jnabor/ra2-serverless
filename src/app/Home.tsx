@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme: Theme) =>
     hr: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(1),
-      width: '100%'
+      width: '100%',
+      maxWidth: '260px'
     }
   })
 )

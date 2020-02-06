@@ -22,12 +22,12 @@ const HostedUiSignIn: React.SFC<HostedUiSignInProps> = () => {
       variant='contained'
       onClick={() => signInHandler()}
       size='large'
-      className={classes.google}>
-      <div className={classes.container}>
-        <div className={classes.spacer}>
+      className={classes.btnFederated}>
+      <div className={classes.btnElems}>
+        <div className={classes.btnIcon}>
           <img style={{ height: '22px' }} src={cognitoLogo} />
         </div>
-        <div className={classes.fsignLabel}>Sign in with Hosted UI</div>
+        <div className={classes.btnLabel}>Sign in with Hosted UI</div>
       </div>
     </Button>
   )

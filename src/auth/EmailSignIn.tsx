@@ -13,16 +13,16 @@ const HostedUiSignIn: React.SFC<HostedUiSignInProps> = () => {
 
   return (
     <Button
-      fullWidth
       variant='contained'
+      color='primary'
       onClick={() => history.push('/auth')}
-      size='large'
-      className={classes.google}>
-      <div className={classes.container}>
-        <div className={classes.spacer}>
+      className={classes.btn}
+      size='large'>
+      <div className={classes.btnElems}>
+        <div className={classes.btnIcon}>
           <EmailIcon />
         </div>
-        <div className={classes.fsignLabel}>Sign in with Email</div>
+        <div className={classes.btnLabel}>Sign in with Email</div>
       </div>
     </Button>
   )

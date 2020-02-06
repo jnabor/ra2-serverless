@@ -106,19 +106,21 @@ const FacebookSignIn: React.SFC<FacebookSignInProps> = () => {
 
   return (
     <Button
-      fullWidth
       variant='contained'
       disabled={loading}
       onClick={() => {
         handleClick()
       }}
       size='large'
-      className={classes.google}>
-      <div className={classes.container}>
-        <div className={classes.spacer}>
-          <img style={{ height: '22px' }} src={facebookLogo} />
+      className={[classes.btn, classes.btnFederated].join(' ')}>
+      <div className={classes.btnElems}>
+        <div className={classes.btnIcon}>
+          <img
+            style={{ height: '24px', paddingTop: '3px' }}
+            src={facebookLogo}
+          />
         </div>
-        <div className={classes.fsignLabel}>Continue with Facebook</div>
+        <div className={classes.btnLabel}>Continue with Facebook</div>
       </div>
     </Button>
   )
