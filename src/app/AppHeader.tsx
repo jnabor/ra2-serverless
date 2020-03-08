@@ -4,7 +4,7 @@ import {
   useTheme,
   createStyles,
   makeStyles,
-  Theme
+  Theme,
 } from '@material-ui/core/styles'
 
 import { Toolbar, AppBar, IconButton, Button } from '@material-ui/core'
@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     appBar: { boxShadow: 'none', backgroundColor: 'transparent' },
     menuButton: {
-      marginRight: theme.spacing(2)
+      marginRight: theme.spacing(2),
     },
     spacer: {
-      flexGrow: 1
-    }
+      flexGrow: 1,
+    },
   })
 )
 
@@ -32,21 +32,22 @@ const Header: React.SFC<HeaderProps> = () => {
   const history = useHistory()
 
   let authLink = authContext.isAuthenticated() ? (
-    <Button color='primary' onClick={() => authContext.signOut()}>
+    <Button color="primary" onClick={() => authContext.signOut()}>
       Sign Out
     </Button>
   ) : null
 
   return (
-    <AppBar position='static' className={classes.appBar}>
+    <AppBar position="static" className={classes.appBar}>
       <Toolbar>
         <IconButton
-          edge='start'
+          edge="start"
           className={classes.menuButton}
           onClick={() => history.push('/')}
-          color='inherit'
-          aria-label='home'>
-          <HomeIcon color='action' />
+          color="inherit"
+          aria-label="home"
+        >
+          <HomeIcon color="action" />
         </IconButton>
         <div className={classes.spacer}></div>
         {authLink}
