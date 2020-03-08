@@ -6,7 +6,6 @@
 
 #### see live demo
 
-production: https://ra2.sonabstudios.com/ <br />
 development: https://ra2-dev.sonabstudios.com/ <br />
 
 test account: <br />
